@@ -14,6 +14,9 @@ import { EditorComponent } from './components/editor/editor.component';
 import { RichTextEditorModule } from '@syncfusion/ej2-angular-richtexteditor';
 import { ReadingviewComponent } from './views/readingview/readingview.component';
 import { ComentariosComponent } from './components/comentarios/comentarios.component';
+import { HistoriasComponent } from './components/historias/historias.component';
+import { BusquedaviewComponent } from './views/busquedaview/busquedaview.component';
+import { EscritorviewComponent } from './views/escritorview/escritorview.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,10 @@ import { ComentariosComponent } from './components/comentarios/comentarios.compo
     ValoracionComponent,
     EditorComponent,
     ReadingviewComponent,
-    ComentariosComponent
+    ComentariosComponent,
+    HistoriasComponent,
+    BusquedaviewComponent,
+    EscritorviewComponent
   ],
   imports: [
     BrowserModule,
