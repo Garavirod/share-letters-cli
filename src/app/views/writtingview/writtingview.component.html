@@ -1,0 +1,68 @@
+<section class="container-fluid bg-app-container p-4">
+    <div class="card p-3 mb-2">
+        <div class="card-body">
+            <div class="row">
+                <h4 class="display-5 highlight-text">Datos generales</h4>
+                <div class="col-lg-6">
+                    <form>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Titluo de la
+                                historia</label>
+                            <input type="text" class="form-control" id=""
+                                aria-describedby="" autocomplete="false">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Tipo de texto
+                                narrativo</label>
+                            <select class="form-select me-2" aria-label="Default select example">
+                                <option selected>narrativa..</option>
+                                <option value="1">Novela</option>
+                                <option value="2">Cuento</option>
+                                <option value="3">Mito</option>
+                                <option value="4">Anécdota</option>
+                                <option value="5">Fábula</option>
+                                <option value="6">Leyenda</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Género</label>
+                            <input type="text" class="form-control" id="">
+                            <div id="emailHelp" class="form-text">Puede quedar vacío.</div>
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control" placeholder="Agrega sinopsis a tu historia" id="floatingTextarea2"
+                                style="min-height: 100px; max-height: 100px"></textarea>
+                            <label for="floatingTextarea2">Sinopsis</label>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">¿Has terminado tu historia?</label>
+                        </div>
+                        <button type="submit" class="btn btn-dark rounded-pill">Guaradar</button>
+                    </form>
+                </div>
+                <div class="col-lg-6">
+                    <h5>Valoración</h5>
+                    <app-valoracion></app-valoracion>
+                    <button type="button" class="btn btn-danger rounded-pill">Eliminar</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card p-3 mb-2">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h4 class="display-5 highlight-text">Readacción</h4>
+                    <h5>Nevela</h5>
+                    <h5>Terror</h5>
+                    <h5>Terror</h5>
+                    <h5>Terror</h5>
+                    <h5>Terror</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

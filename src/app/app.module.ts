@@ -7,6 +7,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { CredentialsComponent } from './views/credentials/credentials.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ProfileComponent } from './views/profile/profile.component';
+import { WrittingviewComponent } from './views/writtingview/writtingview.component';
+import { ValoracionComponent } from './components/valoracion/valoracion.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { ProfileComponent } from './views/profile/profile.component';
     RegisterComponent,
     CredentialsComponent,
     NavbarComponent,
-    ProfileComponent
+    ProfileComponent,
+    WrittingviewComponent,
+    ValoracionComponent
   ],
   imports: [
     BrowserModule,
