@@ -11,9 +11,9 @@ const routes: Routes = [
   {path: '', component: CredentialsComponent},
   {path: 'profile', component: ProfileComponent},
   {path: 'writting', component: WrittingviewComponent},
-  {path: 'reading', component: ReadingviewComponent},
+  {path: 'reading/:id', component: ReadingviewComponent},
   {path: 'busqueda', component: BusquedaviewComponent},
-  {path: 'escritor', component: EscritorviewComponent},
+  {path: 'escritor/:id', component: EscritorviewComponent},
   {path: '', pathMatch: 'full', redirectTo: '' },
   {path: '**', pathMatch: 'full', redirectTo: '' }
 ];

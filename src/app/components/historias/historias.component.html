@@ -1,4 +1,4 @@
-<div class="row justify-content-center mt-3">
+<div class="row justify-content-center mt-3 ">
     <p class="display-6">Filtros</p>
     <form class="row g-3 text-center">
         <div class="col-lg-4">
@@ -21,13 +21,13 @@
         <img src="https://picsum.photos/200/200?grayscale" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title">Titluo</h5>
-            <p class="card-text">Autor: @userautor</p>
+            <p class="card-text">Autor: <a [routerLink]="[ '/escritor', 12 ]">@userautor</a></p>
             <p class="card-text">Narrativa: Novela</p>
             <p class="card-text">Género: Terror</p>
             <p class="card-text">Fecha de publicación: 23-12-10</p>
             <p>Valoración</p>
             <app-valoracion></app-valoracion>
-            <a href="#" class="btn btn-outline-dark rounded-pill m-2">Ver</a>
+            <a class="btn btn-outline-dark rounded-pill m-2" [routerLink]="[ '/reading', 34 ]">Leer</a>
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-outline-dark rounded-pill" data-bs-toggle="modal"
                 data-bs-target="#exampleModal">
@@ -35,7 +35,7 @@
             </button>
 
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            <div class="modal fade z-index" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog modal-dialog modal-dialog-centered modal-dialog-scrollable">
                     <div class="modal-content">
