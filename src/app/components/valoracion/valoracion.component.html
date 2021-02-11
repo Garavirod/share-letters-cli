@@ -1,8 +1,9 @@
 
-<p class="valoracion">
-    <span><i class="bi bi-star-fill"></i></span>
-    <span><i class="bi bi-star-fill"></i></span>
-    <span><i class="bi bi-star-fill"></i></span>
-    <span><i class="bi bi-star"></i></span>
-    <span><i class="bi bi-star"></i></span>
+<p class="valoracion" >
+    <span *ngFor="let valor of valoraciones; index as idx;" >
+        <i *ngIf="valoracion <= idx ; else elseBlock" class="bi bi-star"></i>
+        <ng-template #elseBlock>
+            <span ><i class="bi bi-star-fill"></i></span>        
+        </ng-template>
+    </span>    
 </p>

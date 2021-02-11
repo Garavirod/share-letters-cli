@@ -7,6 +7,10 @@
   font-size: 20px;
 }
 
+.valoracion > span {
+  display: inline-block;
+}
+
 body{    
   
   background: rgb(80,26,119);

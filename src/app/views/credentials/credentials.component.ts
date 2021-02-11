@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./credentials.component.css']
 })
 export class CredentialsComponent implements OnInit {
-
+  nameApp:String = "SharePen";
   constructor() { }
 
   ngOnInit(): void {

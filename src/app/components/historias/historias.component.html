@@ -17,17 +17,17 @@
         </div>
     </form>
 
-    <div class="card col-lg-4 m-2" style="width: 18rem;">
+    <div class="card col-lg-4 m-2" style="width: 18rem;" *ngFor="let hist of historias">
         <img src="https://picsum.photos/200/200?grayscale" class="card-img-top" alt="...">
         <div class="card-body">
-            <h5 class="card-title">Titluo</h5>
-            <p class="card-text">Autor: <a [routerLink]="[ '/escritor', 12 ]">@userautor</a></p>
+            <h5 class="card-title">{{hist.titulo}}</h5>
+            <p class="card-text">Autor: <a [routerLink]="[ '/escritor', hist.autor.uid ]">{{hist.autor.username}}</a></p>
             <p class="card-text">Narrativa: Novela</p>
             <p class="card-text">Género: Terror</p>
-            <p class="card-text">Fecha de publicación: 23-12-10</p>
+            <p class="card-text">Fecha de publicación: {{hist.published}}</p>
             <p>Valoración</p>
-            <app-valoracion></app-valoracion>
-            <a class="btn btn-outline-dark rounded-pill m-2" [routerLink]="[ '/reading', 34 ]">Leer</a>
+            <app-valoracion [valoracion]="hist.valoracion" ></app-valoracion>
+            <a class="btn btn-outline-dark rounded-pill m-2" [routerLink]="[ '/reading', hist.id ]">Leer</a>
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-outline-dark rounded-pill" data-bs-toggle="modal"
                 data-bs-target="#exampleModal">
@@ -44,18 +44,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Numquam incidunt
-                                aliquam aliquid voluptatibus soluta quae, voluptates expedita ipsum facere
-                                dignissimos eaque, alias quia porro dicta. Minus blanditiis quasi rem maxime.
-                            </p>
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Numquam incidunt
-                                aliquam aliquid voluptatibus soluta quae, voluptates expedita ipsum facere
-                                dignissimos eaque, alias quia porro dicta. Minus blanditiis quasi rem maxime.
-                            </p>
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Numquam incidunt
-                                aliquam aliquid voluptatibus soluta quae, voluptates expedita ipsum facere
-                                dignissimos eaque, alias quia porro dicta. Minus blanditiis quasi rem maxime.
-                            </p>
+                            <p>{{hist.sinopsis}}</p>                         
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
