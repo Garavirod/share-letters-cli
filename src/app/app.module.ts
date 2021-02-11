@@ -9,7 +9,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ProfileComponent } from './views/profile/profile.component';
 import { WrittingviewComponent } from './views/writtingview/writtingview.component';
 import { ValoracionComponent } from './components/valoracion/valoracion.component';
-
+// Imported Syncfusion RichTextEditorModule from Rich Text Editor package
+import { RichTextEditorModule } from '@syncfusion/ej2-angular-richtexteditor';
+import { EditorComponent } from './components/editor/editor.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,11 +21,13 @@ import { ValoracionComponent } from './components/valoracion/valoracion.componen
     NavbarComponent,
     ProfileComponent,
     WrittingviewComponent,
-    ValoracionComponent
+    ValoracionComponent,
+    EditorComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    RichTextEditorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
