@@ -17,7 +17,12 @@ export class EditorComponent implements OnInit {
       '|', 'ClearFormat', 'Print', '|', 'FullScreen']
   };
   //source code 'SourceCode'
-  public iframe: object = { enable: true };
+  public iframe: object = {
+    enable: true, 
+    attributes: {
+      readonly: 'readonly'
+    },
+  };
   public height: number = 500;
   constructor() { }
 

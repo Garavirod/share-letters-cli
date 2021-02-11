@@ -12,6 +12,8 @@ import { ValoracionComponent } from './components/valoracion/valoracion.componen
 import { EditorComponent } from './components/editor/editor.component';
 // Imported Syncfusion RichTextEditorModule from Rich Text Editor package
 import { RichTextEditorModule } from '@syncfusion/ej2-angular-richtexteditor';
+import { ReadingviewComponent } from './views/readingview/readingview.component';
+import { ComentariosComponent } from './components/comentarios/comentarios.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { RichTextEditorModule } from '@syncfusion/ej2-angular-richtexteditor';
     ProfileComponent,
     WrittingviewComponent,
     ValoracionComponent,
-    EditorComponent
+    EditorComponent,
+    ReadingviewComponent,
+    ComentariosComponent
   ],
   imports: [
     BrowserModule,

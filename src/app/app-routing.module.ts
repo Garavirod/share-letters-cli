@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CredentialsComponent } from './views/credentials/credentials.component';
 import { ProfileComponent } from './views/profile/profile.component';
+import { ReadingviewComponent } from './views/readingview/readingview.component';
 import { WrittingviewComponent } from './views/writtingview/writtingview.component';
 
 const routes: Routes = [
   {path: '', component: CredentialsComponent},
   {path: 'profile', component: ProfileComponent},
   {path: 'writting', component: WrittingviewComponent},
+  {path: 'reading', component: ReadingviewComponent},
   {path: '', pathMatch: 'full', redirectTo: '' },
   {path: '**', pathMatch: 'full', redirectTo: '' }
 ];
