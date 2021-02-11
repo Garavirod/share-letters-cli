@@ -11,8 +11,56 @@
                     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque alias vel repellendus blanditiis
                         officiis nobis, voluptatum dolorum natus eius autem atque vitae ut eveniet sapiente quos illo.
                         Debitis, consequuntur ut.</p>
-                    <h5><span class="highlight-text">Email:</span>  user@user.com</h5>
+                    <h5><span class="highlight-text">Email:</span> user@user.com</h5>
                     <h5><span class="highlight-text">Libros publicados:</span> 23</h5>
+                    <button type="button" class="btn bg-app rounded-pill text-white mt-2" data-bs-toggle="modal"
+                        data-bs-target="#newHistoryModal">Crear historia</button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="newHistoryModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Crear nueva historia</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="mb-3">
+                                            <label for="exampleInputEmail1" class="form-label">Titluo de la
+                                                historia</label>
+                                            <input type="text" class="form-control" id=""
+                                                aria-describedby="" autocomplete="false">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="exampleInputPassword1" class="form-label">Tipo de texto
+                                                narrativo</label>
+                                            <select class="form-select me-2" aria-label="Default select example">
+                                                <option selected>narrativa..</option>
+                                                <option value="1">Novela</option>
+                                                <option value="2">Cuento</option>
+                                                <option value="3">Mito</option>
+                                                <option value="4">Anécdota</option>
+                                                <option value="5">Fábula</option>
+                                                <option value="6">Leyenda</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">Género</label>
+                                            <input type="text" class="form-control" id="">
+                                            <div id="emailHelp" class="form-text">Puede quedar vacío.</div>
+                                        </div>
+                                        <button type="submit" class="btn bg-app text-white rounded-pill">Crear</button>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -37,20 +85,22 @@
             </div>
         </form>
         <div class="row justify-content-center mt-3">
-            
+
             <div class="card col-lg-4 m-2" style="width: 18rem;">
                 <img src="https://picsum.photos/200/200?grayscale" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Titluo</h5>
                     <p class="card-text">Autor: @userautor</p>
+                    <p class="card-text">Narrativa: Novela</p>
+                    <p class="card-text">Género: Terror</p>
                     <p class="card-text">Fecha de publicación: 23-12-10</p>
-                    <p>Valoración: 
+                    <p>Valoración:
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star"></span>
                         <span class="fa fa-star"></span>
-                    </p>                                     
+                    </p>
                     <a href="#" class="btn btn-outline-dark rounded-pill m-2">Ver</a>
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-outline-dark rounded-pill" data-bs-toggle="modal"
@@ -69,9 +119,18 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Numquam incidunt aliquam aliquid voluptatibus soluta quae, voluptates expedita ipsum facere dignissimos eaque, alias quia porro dicta. Minus blanditiis quasi rem maxime.</p>
-                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Numquam incidunt aliquam aliquid voluptatibus soluta quae, voluptates expedita ipsum facere dignissimos eaque, alias quia porro dicta. Minus blanditiis quasi rem maxime.</p>
-                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Numquam incidunt aliquam aliquid voluptatibus soluta quae, voluptates expedita ipsum facere dignissimos eaque, alias quia porro dicta. Minus blanditiis quasi rem maxime.</p>
+                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Numquam incidunt
+                                        aliquam aliquid voluptatibus soluta quae, voluptates expedita ipsum facere
+                                        dignissimos eaque, alias quia porro dicta. Minus blanditiis quasi rem maxime.
+                                    </p>
+                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Numquam incidunt
+                                        aliquam aliquid voluptatibus soluta quae, voluptates expedita ipsum facere
+                                        dignissimos eaque, alias quia porro dicta. Minus blanditiis quasi rem maxime.
+                                    </p>
+                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Numquam incidunt
+                                        aliquam aliquid voluptatibus soluta quae, voluptates expedita ipsum facere
+                                        dignissimos eaque, alias quia porro dicta. Minus blanditiis quasi rem maxime.
+                                    </p>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
