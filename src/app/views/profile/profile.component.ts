@@ -8,6 +8,9 @@ import { HistoriasService } from 'src/app/services/historias.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+
+  photo=null;
+  //Historias
   historias: Array<any> = [];
   //Model story
   story={
@@ -18,8 +21,7 @@ export class ProfileComponent implements OnInit {
     valoracion:0,
     sinopsis:"",
     contenido:"",
-    status:false,
-    
+    status:false,    
   }
   constructor(private historiasService: HistoriasService) { };
 
@@ -29,5 +31,10 @@ export class ProfileComponent implements OnInit {
 
   createStory(formRef: NgForm):void{
     console.log(formRef.value);    
+  }
+
+  changePhoto(formRef: NgForm):void{
+    console.log(formRef.value);
+    
   }
 }

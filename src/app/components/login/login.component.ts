@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   }
 
   sendCredentials(formRef: NgForm){
-    console.log(formRef.value);    
+    console.log(formRef);    
   }
 
 }

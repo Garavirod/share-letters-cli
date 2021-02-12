@@ -4,6 +4,25 @@
             <div class="row">
                 <div class="col-lg-6 text-center p-2">
                     <img src="https://picsum.photos/seed/picsum/300/300" class="img-fluid rounded-circle" alt="...">
+                    <form class="row g-3 mt-2" autocomplete="off" (ngSubmit)="changePhoto(formRef)" #formRef="ngForm">                       
+                        <div class="col-auto">                            
+                            <input
+                                required
+                                name="photo"
+                                [(ngModel)]="photo"
+                                #refPhoto="ngModel" 
+                                class="form-control" 
+                                type="file" 
+                                id="formFile"
+                            >
+                        </div>
+                        <div class="col-auto">
+                            <button 
+                                type="submit" 
+                                [disabled]="refPhoto.invalid"
+                                class="btn bg-app rounded-pill text-white"><i class="bi bi-camera-fill"></i> Cambiar foto</button>
+                        </div>
+                    </form>
                 </div>
                 <div class="col-lg-6">
                     <h4 class="display-3 highlight-text">@username</h4>
