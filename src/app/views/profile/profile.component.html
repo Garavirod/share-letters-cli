@@ -27,32 +27,58 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form>
+                                    <form autocomplete="off" (ngSubmit)="createStory(formRef)" #formRef ="ngForm">
                                         <div class="mb-3">
-                                            <label for="exampleInputEmail1" class="form-label">Titluo de la
-                                                historia</label>
-                                            <input type="text" class="form-control" id=""
-                                                aria-describedby="" autocomplete="false">
+                                            <label for="exampleInputEmail1" class="form-label">Titluo de lahistoria</label>
+                                            <input 
+                                                type="text" 
+                                                class="form-control"                                                
+                                                autocomplete="false"
+                                                name="titulo"
+                                                required
+                                                maxlength="100"
+                                                [(ngModel)]="story.titulo"
+                                                #titleRef = "ngModel"
+                                                [class.is-inavlid]="titleRef.invalid && titleRef.touched"
+                                            >
+                                            <small             
+                                                class="form-text text-danger"
+                                                *ngIf="titleRef.invalid && titleRef.touched"
+                                                >
+                                                El título es requerido (podrás cambiarlo más adelante).
+                                            </small>
                                         </div>
                                         <div class="mb-3">
                                             <label for="exampleInputPassword1" class="form-label">Tipo de texto
                                                 narrativo</label>
-                                            <select class="form-select me-2" aria-label="Default select example">
-                                                <option selected>narrativa..</option>
-                                                <option value="1">Novela</option>
-                                                <option value="2">Cuento</option>
-                                                <option value="3">Mito</option>
-                                                <option value="4">Anécdota</option>
-                                                <option value="5">Fábula</option>
-                                                <option value="6">Leyenda</option>
+                                            <select 
+                                                required
+                                                name="narrativa"
+                                                [(ngModel)]="story.narrativa"
+                                                [class.is-invalid]="refNarrativa.invalid && refNarrativa.touched"
+                                                #refNarrativa="ngModel"                                                
+                                                class="form-select me-2" 
+                                                aria-label="Default select example">                                                
+                                                <option value="novela">Novela</option>
+                                                <option value="cuento">Cuento</option>
+                                                <option value="mito">Mito</option>
+                                                <option value="anécdota">Anécdota</option>
+                                                <option value="fábula">Fábula</option>
+                                                <option value="leyenda">Leyenda</option>
                                             </select>
+                                            <small             
+                                                class="form-text text-danger"
+                                                *ngIf="refNarrativa.invalid && refNarrativa.touched"
+                                                >
+                                                La narrativa es requerida (podrás cambiarla más adelante).
+                                            </small>
                                         </div>
                                         <div class="mb-3">
                                             <label for="" class="form-label">Género</label>
                                             <input type="text" class="form-control" id="">
                                             <div id="emailHelp" class="form-text">Puede quedar vacío.</div>
                                         </div>
-                                        <button type="submit" class="btn bg-app text-white rounded-pill">Crear</button>
+                                        <button [disabled]="refNarrativa.invalid || titleRef.invalid" type="submit" class="btn bg-app text-white rounded-pill">Crear</button>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
