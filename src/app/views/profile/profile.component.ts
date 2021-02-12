@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HistoriasService } from 'src/app/services/historias.service';
 
 @Component({
   selector: 'app-profile',
@@ -6,31 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-
-  historia: any = {
-    id:'2334543ffsdf78sdf',
-    titulo:'My amazing story',
-    autor:{
-      username:'@garavirod',
-      uid: '234dhfsdf8764h',
-    },
-    genero:'Terror',
-    narrativa:'Cuento',
-    published:'03-23-23',
-    valoracion:3,
-    sinopsis:'El cuneto es de terror.'
-  }
   historias: Array<any> = [];
-  public getHistorias(): Array<any>{
-    for(let i=0; i<8; i++){
-      this.historias.push(this.historia)
-    }
-    return this.historias;
-  }
-
-  constructor() { }
+  constructor(private historiasService: HistoriasService) { };
 
   ngOnInit(): void {
+    this.historias =  this.historiasService.getHistorias();
   }
 
 }
