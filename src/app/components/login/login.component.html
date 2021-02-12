@@ -1,11 +1,45 @@
-<form>
+<form autocomplete="off" (ngSubmit)="sendCredentials(formRef)" #formRef="ngForm">
     <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Email address</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+      <label class="form-label">Email address</label>
+      <input 
+        type="email" 
+        class="form-control" 
+        aria-describedby="emailHelp"
+        required
+        [class.is-invalid]="emailRef.invalid && emailRef.touched"
+        name="email"
+        [(ngModel)]="userLogin.email"
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+        #emailRef="ngModel"
+      >
+        <small             
+          class="form-text text-danger"
+          *ngIf="emailRef.invalid && emailRef.touched"
+        >
+          Email es inválido
+       </small>
     </div>
     <div class="mb-3">
       <label for="exampleInputPassword1" class="form-label">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1">
+      <input 
+        type="password" 
+        class="form-control"
+        required
+        name="password"
+        [(ngModel)]="userLogin.password"
+        [class.is-invalid]="passwordRef.invalid && passwordRef.touched"
+        #passwordRef="ngModel"
+      >
+      <small             
+          class="form-text text-danger"
+          *ngIf="passwordRef.invalid && passwordRef.touched"
+        >
+          Password es requerido
+       </small>
     </div>            
-    <button type="submit" class="btn btn-dark rounded-pill m-2"><i class="bi bi-box-arrow-in-right m-2"></i>Login</button>
+    <button 
+      type="submit" 
+      class="btn btn-dark rounded-pill m-2"
+      [disabled]="passwordRef.invalid || emailRef.invalid"
+    ><i class="bi bi-box-arrow-in-right m-2"></i>Login</button>
 </form>   
