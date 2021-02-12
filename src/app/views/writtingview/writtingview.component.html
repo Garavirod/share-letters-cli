@@ -4,41 +4,81 @@
             <div class="row">
                 <h4 class="display-5 highlight-text">Datos generales</h4>
                 <div class="col-lg-6">
-                    <form>
+                    <form autocomplete="off" (ngSubmit)="sendStory(formRef)" #formRef="ngForm">
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Titluo de la
                                 historia</label>
-                            <input type="text" class="form-control" id=""
-                                aria-describedby="" autocomplete="false">
+                            <input 
+                                type="text" 
+                                class="form-control"
+                                required 
+                                name="titulo"
+                                [(ngModel)]="historiaModel.titulo"
+                                [class.is-invalid] = "refTitulo.invalid && refTitulo.touched"
+                                #refTitulo="ngModel"
+                                aria-describedby="" autocomplete="false"
+                            >
+                            <small             
+                                class="form-text text-danger"
+                                *ngIf="refTitulo.invalid && refTitulo.touched"
+                                >
+                                El título es requerido.
+                            </small>
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">Tipo de texto
                                 narrativo</label>
-                            <select class="form-select me-2" aria-label="Default select example">
-                                <option selected>narrativa..</option>
-                                <option value="1">Novela</option>
-                                <option value="2">Cuento</option>
-                                <option value="3">Mito</option>
-                                <option value="4">Anécdota</option>
-                                <option value="5">Fábula</option>
-                                <option value="6">Leyenda</option>
+                                <select 
+                                required
+                                name="narrativa"
+                                [(ngModel)]="historiaModel.narrativa"
+                                [class.is-invalid]="refNarrativa.invalid && refNarrativa.touched"
+                                #refNarrativa="ngModel"                                                
+                                class="form-select me-2" 
+                                aria-label="Default select example">                                                
+                                <option value="novela">Novela</option>
+                                <option value="cuento">Cuento</option>
+                                <option value="mito">Mito</option>
+                                <option value="anécdota">Anécdota</option>
+                                <option value="fábula">Fábula</option>
+                                <option value="leyenda">Leyenda</option>
                             </select>
+                            <small             
+                                class="form-text text-danger"
+                                *ngIf="refNarrativa.invalid && refNarrativa.touched"
+                                >
+                                La narrativa es requerida.
+                            </small>
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label">Género</label>
-                            <input type="text" class="form-control" id="">
+                            <input 
+                                type="text" 
+                                class="form-control"
+                                name="genero"
+                                [(ngModel)]="historiaModel.genero"                                
+                            >
                             <div id="emailHelp" class="form-text">Puede quedar vacío.</div>
                         </div>
                         <div class="mb-3">
-                            <textarea class="form-control" placeholder="Agrega sinopsis a tu historia" id="floatingTextarea2"
+                            <textarea 
+                                [(ngModel)]="historiaModel.sinopsis"
+                                name="sinopsis"
+                                class="form-control" placeholder="Agrega sinopsis a tu historia" id="floatingTextarea2"
                                 style="min-height: 100px; max-height: 100px"></textarea>
                             <label for="floatingTextarea2">Sinopsis</label>
                         </div>
                         <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <input
+                                [(ngModel)]="historiaModel.status"
+                                name="status" 
+                                type="checkbox" class="form-check-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">¿Has terminado tu historia?</label>
                         </div>
-                        <button type="submit" class="btn btn-dark rounded-pill"><i class="bi bi-save2-fill m-2"></i>Guaradar</button>
+                        <button 
+                            [disabled]="refTitulo.invalid || refNarrativa.invalid"
+                            type="submit" 
+                            class="btn btn-dark rounded-pill"><i class="bi bi-save2-fill m-2"></i>Guaradar</button>
                     </form>
                 </div>
                 <div class="col-lg-6">

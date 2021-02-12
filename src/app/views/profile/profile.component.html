@@ -46,7 +46,7 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form autocomplete="off" (ngSubmit)="createStory(formRef)" #formRef ="ngForm">
+                                    <form autocomplete="off" (ngSubmit)="createStory(formRefStory)" #formRefStory ="ngForm">
                                         <div class="mb-3">
                                             <label for="exampleInputEmail1" class="form-label">Titluo de lahistoria</label>
                                             <input 
@@ -94,7 +94,12 @@
                                         </div>
                                         <div class="mb-3">
                                             <label for="" class="form-label">Género</label>
-                                            <input type="text" class="form-control" id="">
+                                            <input 
+                                                type="text" 
+                                                class="form-control"
+                                                name="genero"
+                                                [(ngModel)]="story.genero"                                
+                                            >
                                             <div id="emailHelp" class="form-text">Puede quedar vacío.</div>
                                         </div>
                                         <button [disabled]="refNarrativa.invalid || titleRef.invalid" type="submit" class="btn bg-app text-white rounded-pill">Crear</button>
