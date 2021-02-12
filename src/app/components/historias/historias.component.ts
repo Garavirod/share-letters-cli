@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-historias',
@@ -9,7 +10,15 @@ export class HistoriasComponent implements OnInit {
   @Input() historias: Array<any> = [];
   constructor() { }
 
+  public filtros = {
+    titulo:'',
+    narrativa:''
+  }
   ngOnInit(): void {
   }
 
+  filterStories(f: NgForm){
+    console.log(f.value);
+    
+  }
 }
