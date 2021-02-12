@@ -10,7 +10,7 @@ import { WrittingviewComponent } from './views/writtingview/writtingview.compone
 const routes: Routes = [
   {path: '', component: CredentialsComponent},
   {path: 'profile', component: ProfileComponent},
-  {path: 'writting', component: WrittingviewComponent},
+  {path: 'writting/:id', component: WrittingviewComponent},
   {path: 'reading/:id', component: ReadingviewComponent},
   {path: 'busqueda', component: BusquedaviewComponent},
   {path: 'escritor/:id', component: EscritorviewComponent},

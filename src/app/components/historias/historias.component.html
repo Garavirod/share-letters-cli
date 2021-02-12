@@ -50,6 +50,7 @@
             <p>Valoración</p>
             <app-valoracion [valoracion]="hist.valoracion" ></app-valoracion>
             <a class="btn btn-outline-dark rounded-pill m-2" [routerLink]="[ '/reading', hist.id ]">Leer</a>
+            <a *ngIf="editable" class="btn btn-outline-dark rounded-pill m-2" [routerLink]="[ '/writting', hist.id ]">Editar</a>
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-outline-dark rounded-pill" data-bs-toggle="modal"
                 data-bs-target="#exampleModal">
