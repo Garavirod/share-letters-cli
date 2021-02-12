@@ -1,19 +1,67 @@
-<form>    
+<form autocomplete="off" #formRef="ngForm" (ngSubmit)="registerUser(formRef)">    
     <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Name</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+      <label for="exampleInputEmail1" class="form-label">Username</label>
+      <input 
+        type="text" 
+        required
+        class="form-control"  
+        aria-describedby="emailHelp"
+        name="username"
+        [(ngModel)]="userRegister.username"
+        #usernameRef="ngModel"
+        [class.is-invalid]="usernameRef.invalid && usernameRef.touched"
+      >
+      <small             
+          class="form-text text-danger"
+          *ngIf="usernameRef.invalid && usernameRef.touched"
+        >
+          Campo requerido
+       </small>
     </div>
     <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Email address</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+      <label for="exampleInputEmail1" class="form-label">Email</label>
+      <input 
+        type="email" 
+        class="form-control" 
+        id="exampleInputEmail1" 
+        aria-describedby="emailHelp"
+        required
+        name="email"
+        [(ngModel)]="userRegister.email"
+        [class.is-invalid]="emailRef.invalid && emailRef.touched"
+        name="email"
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+        #emailRef="ngModel"
+      >
+      <small             
+          class="form-text text-danger"
+          *ngIf="emailRef.invalid && emailRef.touched"
+        >
+          Email es inválido
+       </small>
     </div>
     <div class="mb-3">
       <label for="exampleInputPassword1" class="form-label">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1">
-    </div>  
-    <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Repeat password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1">
-      </div>            
-    <button type="submit" class="btn btn-dark rounded-pill m-2"><i class="bi bi-box-arrow-in-right mr-2"></i> Create</button>
+      <input 
+        type="password" 
+        class="form-control" 
+        name="password"
+        [(ngModel)]="userRegister.password"
+        minlength="8"
+        required
+        #psdRef="ngModel"
+        [class.is-invalid]="psdRef.invalid && psdRef.touched"
+      >
+      <small             
+          class="form-text text-danger"
+          *ngIf="psdRef.invalid && psdRef.touched"
+        >
+          Password requiere almenos 8 caracteres
+       </small>
+    </div>           
+    <button 
+      type="submit" 
+      class="btn btn-dark rounded-pill m-2"
+      [disabled]="psdRef.invalid || emailRef.invalid || usernameRef.invalid"
+    ><i class="bi bi-box-arrow-in-right mr-2"></i> Create</button>
   </form>   
