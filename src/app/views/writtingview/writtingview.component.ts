@@ -10,4 +10,8 @@ export class WrittingviewComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  recoverContent(content:string){
+    console.log("Story content >", content);
+    
+  }
 }

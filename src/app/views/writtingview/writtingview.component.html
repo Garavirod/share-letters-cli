@@ -57,7 +57,7 @@
                 <div class="col-lg-12">
                     <h4 class="display-5 highlight-text">Readacción</h4>
                     <p>Nunca olvides guardar los cambios de tu historia ...</p>  
-                    <app-editor></app-editor>                 
+                    <app-editor (passStoryContent)="recoverContent($event)" ></app-editor>                 
                 </div>
             </div>
         </div>
