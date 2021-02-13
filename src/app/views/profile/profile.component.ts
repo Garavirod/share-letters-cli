@@ -1,17 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { HistoriasService } from 'src/app/services/historias.service';
+import { ProfileService } from 'src/app/services/profile.service';
+
+class ImageSnippet {
+  constructor(public src:string, public file: File) {}
+}
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit {
 
-  photo=null;
-  //Historias
+
+export class ProfileComponent implements OnInit {
+  selectedFile: ImageSnippet | null = null;
   historias: Array<any> = [];
+  imgProfile: string = "https://res.cloudinary.com/dlapenluj/image/upload/v1613168530/sample.jpg";
   //Model story
   story={
     titulo:"",
@@ -23,7 +29,10 @@ export class ProfileComponent implements OnInit {
     contenido:"",
     status:false,    
   }
-  constructor(private historiasService: HistoriasService) { };
+  constructor(
+      private historiasService: HistoriasService, 
+      private profileService: ProfileService
+  ) { };
 
   ngOnInit(): void {
     this.historias =  this.historiasService.getHistorias();
@@ -33,8 +42,23 @@ export class ProfileComponent implements OnInit {
     console.log(formRef.value);    
   }
 
-  changePhoto(formRef: NgForm):void{
-    console.log(formRef.value);
-    
+  changePhoto(imageInput: any):void{
+    const file: File = imageInput.files[0];
+    if(file){
+      const reader = new FileReader();
+      reader.addEventListener('load',(event:any) => {
+        this.selectedFile = new ImageSnippet(event.target.result, file);
+        this.profileService.saveImage(this.selectedFile.file).subscribe(
+          (res:any)=>{            
+            //Asign new url profile image
+            this.imgProfile = res.secure_url;                     
+          }
+        )
+      });   
+      reader.readAsDataURL(file); 
+    }else{
+      console.log("ningun arivho seleccionado");
+      
+    }
   }
 }
