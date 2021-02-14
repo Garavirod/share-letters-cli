@@ -12,16 +12,15 @@
 }
 
 body{    
-  
-  background: rgb(80,26,119);
-  background: linear-gradient(360deg, rgba(80,26,119,1) 0%, rgba(0,0,0,1) 100%);
-}
+background: #c31432;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #240b36, #c31432);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #240b36, #c31432); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
+}
 
 .highlight-text{
   color: rgb(80,26,119);
 }
-
 
 .bg-app{
   background-color: rgb(80,26,119);;
