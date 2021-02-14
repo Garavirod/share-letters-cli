@@ -6,7 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./valoracion.component.css']
 })
 export class ValoracionComponent implements OnInit {
-  public isLoadedValoracion:boolean = true;
+  public isLoadedValoracion:boolean = false;
   public valoracion:number = 3;
   @Input() idHistoria:string = "";
   valoraciones: Array<number> = [1,2,3,4,5];
