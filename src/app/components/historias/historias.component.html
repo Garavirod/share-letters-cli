@@ -57,7 +57,7 @@
                     <li class="">Fecha de publicación: {{hist.published}}</li>
                     <li class="">
                         <p>Valoración</p>
-                        <app-valoracion [valoracion]="hist.valoracion" ></app-valoracion>
+                        <app-valoracion [idHistoria]="hist.id" ></app-valoracion>
                     </li>
                 </ul>
                 <a class="btn btn-outline-dark rounded-pill m-2" [routerLink]="[ '/reading', hist.id ]">Leer</a>

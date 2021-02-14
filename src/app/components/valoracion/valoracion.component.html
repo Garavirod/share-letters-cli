@@ -1,9 +1,19 @@
 
-<p class="valoracion" >
-    <span *ngFor="let valor of valoraciones; index as idx;" >
-        <i *ngIf="valoracion <= idx ; else elseBlock" class="bi bi-star"></i>
-        <ng-template #elseBlock>
-            <span ><i class="bi bi-star-fill"></i></span>        
-        </ng-template>
-    </span>    
-</p>
+<div class="row text-center">
+    <div class="col-lg-12 mt-2" *ngIf="isLoadedValoracion; else elseTemplate">
+        <i class="fas fa-spinner fa-spin"></i>
+    </div>
+    <ng-template #elseTemplate>
+        <div class="col-lg-12">
+            <p class="valoracion" >
+                <span *ngFor="let valor of valoraciones; index as idx;" >
+                    <i *ngIf="valoracion <= idx ; else elseBlock" class="bi bi-star"></i>
+                    <ng-template #elseBlock>
+                        <span ><i class="bi bi-star-fill"></i></span>        
+                    </ng-template>
+                </span>    
+            </p>
+        </div>
+    </ng-template>
+    
+</div>

@@ -11,6 +11,10 @@
   display: inline-block;
 }
 
+.fa-spinner{
+  font-size: 30px;
+}
+
 body{    
 background: #c31432;  /* fallback for old browsers */
 background: -webkit-linear-gradient(to right, #240b36, #c31432);  /* Chrome 10-25, Safari 5.1-6 */
