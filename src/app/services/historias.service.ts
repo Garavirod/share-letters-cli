@@ -11,6 +11,11 @@ export class HistoriasService {
   constructor(private http:HttpClient) {    
   }
 
+  getValoracionAVG(idHistoria:string){
+    const endpoint = `${environment.spenBaseURL}/valoracion/value-avg/${idHistoria}`;
+    return this.http.get(endpoint);
+  }
+
   getHistoriaLectura(idHistoria:string){
     const endpoint = `${environment.spenBaseURL}/historias/story-reading/${idHistoria}`;
     return this.http.get(endpoint);

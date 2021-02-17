@@ -13,12 +13,22 @@ import { HistoriasService } from 'src/app/services/historias.service';
 export class ReadingviewComponent implements OnInit {
   results:boolean = true;
   searched:boolean = false;
-  mensaje:string = "";
+  mensaje:string = ""; // message if any error comes up
 
+  //models
   escritor:Escritor = new Escritor();
   historia:Historia = new Historia();
-  private idHistoria:string = "";
-  public comentario:string = "";
+
+  // Story id
+  idHistoria:string = "";
+
+  //comentary form
+  comentario:string = "";
+
+  //valoracion
+
+  valoracion:number = 0;
+
   constructor(
     private activeRoute:ActivatedRoute,
     private historiaService:HistoriasService
@@ -28,7 +38,6 @@ export class ReadingviewComponent implements OnInit {
     this.idHistoria =  this.activeRoute.snapshot.params.id;
     console.log("Thi is param >: ",this.idHistoria);
     this.getHistoriaReadingMode();
-    
   }
 
   private getHistoriaReadingMode(){
