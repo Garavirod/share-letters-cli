@@ -8,6 +8,7 @@ import { NgForm } from '@angular/forms';
 })
 export class HistoriasComponent implements OnInit {
   @Input() historias: Array<any> = [];
+  @Input() autor: string = "Sin asignar";
   @Input() editable: boolean = false;
   constructor() { }
 

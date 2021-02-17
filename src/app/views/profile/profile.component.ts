@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { getUserInfo } from 'src/app/helpers/jwt';
+import { Escritor } from 'src/app/models/escritor-model';
+import { Historia } from 'src/app/models/historia-model';
 import { HistoriasService } from 'src/app/services/historias.service';
 import { ProfileService } from 'src/app/services/profile.service';
 
@@ -16,54 +18,42 @@ class ImageSnippet {
 
 
 export class ProfileComponent implements OnInit {
-  private tokenInfo = getUserInfo();
+  private tokenInfo:any = null;
+  escritor:Escritor;
+  historia:Historia;
   selectedFile: ImageSnippet | null = null;
-  //info escritor
-  escritor = {
-    about:"",
-    email:"",
-    imagenURL:"",
-    username:"",
-    numhist:""
-  }
-  //historias escritor
-  historias: Array<any> = [];
 
   //Model story
-  story={
-    titulo:"",
-    narrativa:"",
-    genero:"",
-    autor:"",
-    valoracion:0,
-    sinopsis:"",
-    contenido:"",
-    status:false,    
-  }
+
   constructor(
       private historiasService: HistoriasService, 
       private profileService: ProfileService,
-  ) { };
+  ) { 
+    this.escritor = new Escritor();
+    this.historia = new Historia();
+    this.tokenInfo = getUserInfo();
+   };
 
   ngOnInit(): void {
     this.getProfileInformation();
-    this.historias =  this.historiasService.getHistorias();
-    console.log("Token Info >: ",this.tokenInfo);
-    
+    console.log("Token Info >: ",this.tokenInfo);    
   }
 
   getProfileInformation(){
+    
     if(this.tokenInfo){
+      // rest petition based on user's uid
       this.profileService.getProfile(this.tokenInfo.uid).subscribe(
         (res:any)=>{
           //Asignación de datos del escritor
-          this.escritor.username = res.escritor.username;
-          this.escritor.about = res.escritor.about;
-          this.escritor.email = res.escritor.email;
-          this.escritor.imagenURL = res.escritor.imageURL;
-          this.escritor.numhist = res.numHist;
+          this.escritor.setAbout(res.escritor.about);
+          this.escritor.setUsername(res.escritor.username);
+          this.escritor.setId(res.escritor.about);
+          this.escritor.setEmail(res.escritor.email);
+          this.escritor.setImageURL(res.escritor.imageURL);
+          this.escritor.setNumHist(res.numHist);
           //Asignación de historias
-          this.historias = res.historias;
+          this.escritor.setHistorias(res.historias);
           console.log(res);          
         },
         (error)=>{
@@ -87,7 +77,7 @@ export class ProfileComponent implements OnInit {
         this.profileService.saveImage(this.selectedFile.file).subscribe(
           (res:any)=>{            
             //Asign new url profile image
-            this.escritor.imagenURL = res.secure_url;                     
+            this.escritor.setImageURL(res.secure_url);              
           }
         )
       });   

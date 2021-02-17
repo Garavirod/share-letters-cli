@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.credentials).subscribe(
       (res:any)=>{
         localStorage.setItem('spen-tkn',res.token);
+        this.authService.userLogged$.emit(true);
         this.router.navigateByUrl('profile');
       },
       (error)=>{

@@ -50,11 +50,11 @@
                 <h5 class="card-title display-6">{{hist.titulo}}</h5>
                 <ul class="list-group list-group-flush">
                     <li class="">
-                        Autor: <a [routerLink]="[ '/escritor', hist.autor.uid ]">{{hist.autor.username}}</a>
+                        Autor: <a [routerLink]="[ '/escritor', hist.fk_escritor ]">{{autor}}</a>
                     </li>
                     <li class="">Narrativa: {{hist.narrativa}}</li>
                     <li class="">Género: {{hist.genero}}</li>
-                    <li class="">Fecha de publicación: {{hist.published}}</li>
+                    <li class="">Fecha de publicación: {{hist.createdAt}}</li>
                     <li class="">
                         <p>Valoración</p>
                         <app-valoracion [idHistoria]="hist.id" ></app-valoracion>

@@ -1,4 +1,4 @@
-<header class="mb-5" *ngIf="userLogged">
+<header class="mb-5">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container-fluid d-flex flex-row-reverse">
             <a class="navbar-brand display-2" [routerLink]="['profile']" id="garavirod-link">SharePen</a>
@@ -15,7 +15,7 @@
                         <a class="nav-link" [routerLink]="['busqueda']" routerLinkActive="active">Descubrir historias</a>
                     </li>                    
                     <li class="nav-item">
-                        <button class="btn bg-app rounded-pill text-white mr-2" type="button"><i class="bi bi-box-arrow-left"></i> Logout</button>                   
+                        <button (click)="logout()" class="btn bg-app rounded-pill text-white mr-2" type="button"><i class="bi bi-box-arrow-left"></i> Logout</button>                   
                     </li>                    
                 </ul>
             </div>
