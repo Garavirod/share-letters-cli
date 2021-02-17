@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserCredentials } from 'src/app/models/UserCredentials';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -7,21 +10,22 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  credentials:UserCredentials = new UserCredentials();
 
-  userRegister = {
-    username:'',
-    email:'',
-    password:'',
-  }
-
-  constructor() { }
+  constructor(private authService:AuthService, private router:Router) { }
 
   ngOnInit(): void {
   }
 
-
   registerUser(formRef: NgForm):void{
-    console.log(formRef.value);
-    
+    this.authService.register(this.credentials).subscribe(
+      (res:any)=>{
+        localStorage.setItem('spen-tkn',res.token);
+        this.router.navigateByUrl('profile');
+      },
+      (error)=>{
+        console.log(error);        
+      }
+    )      
   }
 }

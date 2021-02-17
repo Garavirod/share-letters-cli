@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { getUserInfo } from 'src/app/helpers/jwt';
 import { HistoriasService } from 'src/app/services/historias.service';
 import { ProfileService } from 'src/app/services/profile.service';
 
@@ -15,6 +16,8 @@ class ImageSnippet {
 
 
 export class ProfileComponent implements OnInit {
+  private uid = getUserInfo();
+  
   selectedFile: ImageSnippet | null = null;
   historias: Array<any> = [];
   imgProfile: string = "https://res.cloudinary.com/dlapenluj/image/upload/v1613168530/sample.jpg";
@@ -36,6 +39,8 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.historias =  this.historiasService.getHistorias();
+    console.log("UID",this.uid);
+    
   }
 
   createStory(formRef: NgForm):void{

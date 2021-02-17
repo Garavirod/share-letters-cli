@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  cloudinaryURL : '',
+  cloudinaryURL : 'https://api.cloudinary.com/v1_1/dlapenluj/upload',
+  spenBaseURL : 'http://localhost:5000/api',
   production: false
 };
 

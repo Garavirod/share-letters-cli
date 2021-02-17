@@ -8,7 +8,7 @@
         required
         [class.is-invalid]="emailRef.invalid && emailRef.touched"
         name="email"
-        [(ngModel)]="userLogin.email"
+        [(ngModel)]="credentials.email"
         pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
         #emailRef="ngModel"
       >
@@ -26,7 +26,7 @@
         class="form-control"
         required
         name="password"
-        [(ngModel)]="userLogin.password"
+        [(ngModel)]="credentials.password"
         [class.is-invalid]="passwordRef.invalid && passwordRef.touched"
         #passwordRef="ngModel"
       >
