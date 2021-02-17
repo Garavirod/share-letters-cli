@@ -1,4 +1,6 @@
-<section class="container-fluid bg-app-container p-4">
+<app-noresults [message]="mensaje" *ngIf="!results && searched; else resultsTemplate"></app-noresults>
+<ng-template #resultsTemplate>
+    <section class="container-fluid bg-app-container p-4">
     <div class="card p-3 mb-2">
         <div class="card-body">
             <div class="row">
@@ -67,3 +69,5 @@
         </div>
     </div>
 </section>
+</ng-template>
+

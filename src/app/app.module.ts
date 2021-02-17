@@ -20,6 +20,7 @@ import { HistoriasComponent } from './components/historias/historias.component';
 import { BusquedaviewComponent } from './views/busquedaview/busquedaview.component';
 import { EscritorviewComponent } from './views/escritorview/escritorview.component';
 import { AsignvalueComponent } from './components/asignvalue/asignvalue.component';
+import { NoresultsComponent } from './views/noresults/noresults.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { AsignvalueComponent } from './components/asignvalue/asignvalue.componen
     BusquedaviewComponent,
     EscritorviewComponent,
     AsignvalueComponent,
+    NoresultsComponent,
   ],
   imports: [
     BrowserModule,

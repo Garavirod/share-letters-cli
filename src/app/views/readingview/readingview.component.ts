@@ -11,6 +11,10 @@ import { HistoriasService } from 'src/app/services/historias.service';
   styleUrls: ['./readingview.component.css']
 })
 export class ReadingviewComponent implements OnInit {
+  results:boolean = true;
+  searched:boolean = false;
+  mensaje:string = "";
+
   escritor:Escritor = new Escritor();
   historia:Historia = new Historia();
   private idHistoria:string = "";
@@ -21,8 +25,8 @@ export class ReadingviewComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.idHistoria = "ewrwe"; /* this.activeRoute.snapshot.params.id;
-    console.log("Thi is param >: ",this.idHistoria); */
+    this.idHistoria =  this.activeRoute.snapshot.params.id;
+    console.log("Thi is param >: ",this.idHistoria);
     this.getHistoriaReadingMode();
     
   }
@@ -46,6 +50,9 @@ export class ReadingviewComponent implements OnInit {
         
       },
       (error)=>{
+        this.results = false;
+        this.searched = true;
+        this.mensaje = error.error.msg;
         console.log(error.error);
         
       }
