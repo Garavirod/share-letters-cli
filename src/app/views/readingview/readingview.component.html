@@ -5,10 +5,12 @@
                 <h4 class="display-5 highlight-text">Datos generales</h4>
                 <div class="col-lg-6">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Titulo: La Iliada</li>
-                        <li class="list-group-item">Narrativa: Novela</li>
-                        <li class="list-group-item">Género: Terror</li>
-                        <li class="list-group-item">Autor: <a [routerLink]="[ '/escritor', 543 ]">@user</a> </li>
+                        <li class="list-group-item">Titulo: {{historia.titulo}}</li>
+                        <li class="list-group-item">Narrativa: {{historia.narrativa}}</li>
+                        <li class="list-group-item">Género: {{historia.genero}}</li>
+                        <li class="list-group-item">Autor: <a [routerLink]="[ '/escritor', escritor.id ]">{{escritor.username}}</a> </li>
+                        <li class="list-group-item">Publicada: {{historia.createdAt}}</li>
+                        <li class="list-group-item">Actualizada: {{historia.updatedAt}}</li>
                         <li class="list-group-item">
                             <app-valoracion></app-valoracion>
                         </li>

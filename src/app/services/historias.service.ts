@@ -1,33 +1,18 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HistoriasService {
-  private historia: any = {
-    id: '2334543ffsdf78sdf',
-    titulo: 'My amazing story',
-    autor: {
-      username: '@garavirod',
-      uid: '234dhfsdf8764h',
-    },
-    genero: 'Terror',
-    narrativa: 'Cuento',
-    published: '03-23-23',
-    valoracion: 3,
-    sinopsis: 'El cuneto es de terror.'
-  }
   
-  constructor() {
-    console.log("Servico listo");
-
+  
+  constructor(private http:HttpClient) {    
   }
 
-  getHistorias(): Array<any> {
-    let historias: Array<any> = [];
-    for (let i = 0; i < 8; i++) {
-      historias.push(this.historia)
-    }
-    return historias;
+  getHistoriaLectura(idHistoria:string){
+    const endpoint = `${environment.spenBaseURL}/historias/story-reading/${idHistoria}`;
+    return this.http.get(endpoint);
   }
 }
