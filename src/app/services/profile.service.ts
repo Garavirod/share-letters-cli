@@ -18,4 +18,9 @@ export class ProfileService {
     formData.append('file',image);
     return this.http.post(environment.cloudinaryURL,formData);
   };
+
+  getProfile(uid:string){
+    const endpoint:string = `${environment.spenBaseURL}/credentials/writer-profile/${uid}`;
+    return this.http.get(endpoint);
+  }
 }

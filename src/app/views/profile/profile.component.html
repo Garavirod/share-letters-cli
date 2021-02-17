@@ -3,7 +3,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-lg-6 text-center p-2">
-                    <img [src]="imgProfile" class="img-fluid rounded-circle" alt="..." style="width: 30%;">
+                    <img [src]="escritor.imagenURL" class="img-fluid rounded-circle" alt="..." style="width: 30%;">
                     <form class="row g-3 mt-2" autocomplete="off">                       
                         <div class="col-auto">                            
                             <input
@@ -24,13 +24,11 @@
                     </form>
                 </div>
                 <div class="col-lg-6">
-                    <h4 class="display-3 highlight-text">@username</h4>
+                    <h4 class="display-3 highlight-text">{{escritor.username}}</h4>
                     <h5 class="highlight-text "><i>About me</i></h5>
-                    <p class="">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque alias vel repellendus blanditiis
-                        officiis nobis, voluptatum dolorum natus eius autem atque vitae ut eveniet sapiente quos illo.
-                        Debitis, consequuntur ut.</p>
-                    <h5 class=""><span class="highlight-text">Email:</span> user@user.com</h5>
-                    <h5 class=""><span class="highlight-text">Libros publicados:</span> 23</h5>
+                    <p class="">{{escritor.about}}</p>
+                    <h5 class=""><span class="highlight-text">Email:</span> {{escritor.email}}</h5>
+                    <h5 class=""><span class="highlight-text">Libros publicados:</span> {{escritor.numhist}}</h5>
                     <button type="button" class="btn bg-app rounded-pill text-white mt-2" data-bs-toggle="modal"
                         data-bs-target="#newHistoryModal"><i class="bi bi-plus-circle-fill m-2"></i>Crear historia</button>
 

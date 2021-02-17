@@ -16,11 +16,19 @@ class ImageSnippet {
 
 
 export class ProfileComponent implements OnInit {
-  private uid = getUserInfo();
-  
+  private tokenInfo = getUserInfo();
   selectedFile: ImageSnippet | null = null;
+  //info escritor
+  escritor = {
+    about:"",
+    email:"",
+    imagenURL:"",
+    username:"",
+    numhist:0
+  }
+  //historias escritor
   historias: Array<any> = [];
-  imgProfile: string = "https://res.cloudinary.com/dlapenluj/image/upload/v1613168530/sample.jpg";
+
   //Model story
   story={
     titulo:"",
@@ -34,13 +42,36 @@ export class ProfileComponent implements OnInit {
   }
   constructor(
       private historiasService: HistoriasService, 
-      private profileService: ProfileService
+      private profileService: ProfileService,
   ) { };
 
   ngOnInit(): void {
+    this.getProfileInformation();
     this.historias =  this.historiasService.getHistorias();
-    console.log("UID",this.uid);
+    console.log("Token Info >: ",this.tokenInfo);
     
+  }
+
+  getProfileInformation(){
+    if(this.tokenInfo){
+      this.profileService.getProfile(this.tokenInfo.uid).subscribe(
+        (res:any)=>{
+          //Asignación de datos del escritor
+          this.escritor.username = res.escritor.username;
+          this.escritor.about = res.escritor.about;
+          this.escritor.email = res.escritor.email;
+          this.escritor.imagenURL = res.escritor.imageURL;
+          this.escritor.numhist = res.escritor.numHist;
+          //Asignación de historias
+          this.historias = res.historias;
+          console.log(res);          
+        },
+        (error)=>{
+          console.log(error);          
+        }
+      )
+    }
+
   }
 
   createStory(formRef: NgForm):void{
@@ -56,7 +87,7 @@ export class ProfileComponent implements OnInit {
         this.profileService.saveImage(this.selectedFile.file).subscribe(
           (res:any)=>{            
             //Asign new url profile image
-            this.imgProfile = res.secure_url;                     
+            this.escritor.imagenURL = res.secure_url;                     
           }
         )
       });   
