@@ -24,7 +24,7 @@ export class ProfileComponent implements OnInit {
     email:"",
     imagenURL:"",
     username:"",
-    numhist:0
+    numhist:""
   }
   //historias escritor
   historias: Array<any> = [];
@@ -61,7 +61,7 @@ export class ProfileComponent implements OnInit {
           this.escritor.about = res.escritor.about;
           this.escritor.email = res.escritor.email;
           this.escritor.imagenURL = res.escritor.imageURL;
-          this.escritor.numhist = res.escritor.numHist;
+          this.escritor.numhist = res.numHist;
           //Asignación de historias
           this.historias = res.historias;
           console.log(res);          
