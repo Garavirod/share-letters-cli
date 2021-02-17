@@ -20,4 +20,14 @@ export class HistoriasService {
     const endpoint = `${environment.spenBaseURL}/historias/story-reading/${idHistoria}`;
     return this.http.get(endpoint);
   }
+
+  sendValoracion(valoracion:any){
+    const endpoint = `${environment.spenBaseURL}/valoracion/value-story`;
+    return this.http.post(endpoint,valoracion);
+  }
+
+  statusValoracion(idEscritor:string, idHistoria:string){
+    const endpoint = `${environment.spenBaseURL}/valoracion/valued?idEscritor=${idEscritor}&idHistoria=${idHistoria}`;
+    return this.http.get(endpoint);
+  }
 }

@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Escritor } from 'src/app/models/escritor-model';
 import { Historia } from 'src/app/models/historia-model';
+import { AuthService } from 'src/app/services/auth.service';
 import { HistoriasService } from 'src/app/services/historias.service';
 
 @Component({
@@ -18,25 +19,22 @@ export class ReadingviewComponent implements OnInit {
   //models
   escritor:Escritor = new Escritor();
   historia:Historia = new Historia();
-
+  readerID:string = "";
   // Story id
   idHistoria:string = "";
 
   //comentary form
   comentario:string = "";
 
-  //valoracion
-
-  valoracion:number = 0;
-
   constructor(
     private activeRoute:ActivatedRoute,
-    private historiaService:HistoriasService
+    private historiaService:HistoriasService,
+    private auth:AuthService
   ) { }
 
   ngOnInit(): void {
     this.idHistoria =  this.activeRoute.snapshot.params.id;
-    console.log("Thi is param >: ",this.idHistoria);
+    this.readerID = this.auth.getUserID();
     this.getHistoriaReadingMode();
   }
 
@@ -55,8 +53,8 @@ export class ReadingviewComponent implements OnInit {
         this.historia.setContenido(res.historia.contenido);
         this.historia.setCreatedAt(res.historia.createdAt);
         this.historia.setUpdatedAt(res.historia.updatedAt);
-        console.log(res);
-        
+        console.log("La historia es >: ",this.historia);  
+           
       },
       (error)=>{
         this.results = false;

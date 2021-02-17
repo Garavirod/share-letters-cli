@@ -2,7 +2,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import { UserCredentials } from '../models/UserCredentials';
-import { isLoggedIn } from '../helpers/jwt';
+import { getUserInfo, isLoggedIn } from '../helpers/jwt';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -32,6 +32,11 @@ export class AuthService {
     localStorage.removeItem('spen-tkn');
     this.userLogged$.emit(false);
     this.router.navigateByUrl('');
+  }
+
+  public getUserID():string{
+    const tokninfo = getUserInfo();
+    return tokninfo.uid;
   }
 
   public isUserLoggedIn():boolean{

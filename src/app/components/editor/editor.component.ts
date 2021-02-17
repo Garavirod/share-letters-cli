@@ -6,10 +6,11 @@ import { ToolbarService, LinkService, ImageService, HtmlEditorService } from '@s
   providers: [ToolbarService, LinkService, ImageService, HtmlEditorService]
 })
 export class EditorComponent implements OnInit {
-  @Input() isEditable:string = "";
   @Output() passStoryContent:EventEmitter<string>;
+  @Input() contenido:string = "Aui deberia haber historias ...";
+  @Input() isEditable:string = "";
 
-  public value:string = '<p><b>hola soy goku bitch</b></p>';
+  public value:string ="";
 
   public tools: object = {
     items:['Undo', 'Redo', '|',
@@ -31,12 +32,14 @@ export class EditorComponent implements OnInit {
   public height: number = 500;
 
 
-  constructor() {
+  constructor() {    
     this.passStoryContent = new EventEmitter();
   }
 
-  ngOnInit(): void {            
+  ngOnInit(): void { 
+    this.value = this.contenido;
     if(this.isEditable === 'readonly'){
+      console.log("contendio es ", this.contenido);
       this.tools = {
         items: []
       }
