@@ -30,6 +30,7 @@ export class AsignvalueComponent implements OnInit {
     }
     this.historiaService.sendValoracion(this.valoracion).subscribe(
       (res: any) => {
+        this.existValoracion();
         console.log(res);
       },
       (error) => {
