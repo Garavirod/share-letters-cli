@@ -4,7 +4,7 @@
         <i class="bi bi-book"></i>  
     </div>
     <ng-template #elseTemplate>
-        <div class="card col-lg-4 m-2" style="width: 18rem;" *ngFor="let hist of historias">
+        <div class="card col-lg-4 m-2" style="width: 18rem;" *ngFor="let hist of historias; index as idx;">
             <div class="card-body">
                 <h5 class="card-title display-6">{{hist.titulo}}</h5>
                 <ul class="list-group list-group-flush">
@@ -27,31 +27,29 @@
                 <a class="btn btn-outline-dark rounded-pill m-2" [routerLink]="[ '/reading', hist.id ]">Leer</a>
                 <a *ngIf="editable" class="btn btn-outline-dark rounded-pill m-2" [routerLink]="[ '/writting', hist.id ]">Editar</a>
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-outline-dark rounded-pill" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal">
+                <button *ngIf="hist.sinopsis" type="button" (click)="showSinopsis(hist.sinopsis)" class="btn btn-outline-dark rounded-pill" data-bs-toggle="modal"
+                    data-bs-target="#sinopsisModal">
                     sinopsis
-                </button>
-    
-                <!-- Modal -->
-                <div class="modal fade z-index" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Sinopsis</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <p>{{hist.sinopsis}}</p>                         
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </button>                                
             </div>
         </div>
     </ng-template>
-    
+    <!-- Modal -->
+    <div class="modal fade z-index" id="sinopsisModal" tabindex="-1" 
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Sinopsis</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>                            
+            <div class="modal-body">
+                <p>{{sinopsis}}</p>                         
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 </div>

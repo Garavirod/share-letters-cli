@@ -11,8 +11,17 @@ export class HistoriasComponent implements OnInit {
   @Input() historias: Array<any> = [];
   @Input() autor: string = "Sin asignar";
   @Input() editable: boolean = false;
-  constructor() { }
+  sinopsis:string;
+  constructor() {
+    this.sinopsis = "";
+   }
 
   ngOnInit(): void {
+    console.log("Esto llegó", this.historias);
+    
+  }
+
+  showSinopsis(s:string){
+    this.sinopsis = s;
   }
 }

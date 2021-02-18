@@ -8,7 +8,7 @@ import { HistoriasService } from 'src/app/services/historias.service';
 })
 export class BusquedaviewComponent implements OnInit {
   //historias
-  historias:Array<any> = [];
+  historias:Array<any>;
 
   //loading
   loadingStories:boolean = false;
@@ -17,17 +17,21 @@ export class BusquedaviewComponent implements OnInit {
   //was
   wasSearchd:boolean = false;
 
-  constructor(private historiasService:HistoriasService) { }
+  constructor(private historiasService:HistoriasService) {
+    this.historias = [];    
+  }
 
   ngOnInit(): void {
     this.getAllStories();
-  }
+  }  
 
   getFilters(filters:any){        
     this.loadingStories = true;
     this.historiasService.filterInAll(filters.narrativa,filters.titulo).subscribe(
       (res:any)=>{
-        this.historias = res.historias;               
+        this.historias = res.historias;  
+        console.log(res);
+                     
       },
       (error)=>{
         console.log(error);        
