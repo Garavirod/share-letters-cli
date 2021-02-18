@@ -12,14 +12,7 @@ import { HistoriasService } from 'src/app/services/historias.service';
 export class WrittingviewComponent implements OnInit {
   idHistoriaURL:string;  
   historia:Historia;
-  historiaModel = {
-    titulo: '',
-    narrativa: '',
-    genero:'',
-    sinopsis:'',
-    status:false,
-    contenido:'',
-  }
+  savingStroy:boolean = false;
 
   constructor(
       private historiaService:HistoriasService, 
@@ -46,7 +39,7 @@ export class WrittingviewComponent implements OnInit {
        this.historia.setStatus(res.historia.status);   
        this.historia.setCreatedAt(res.historia.createdAt);
        this.historia.setId(res.historia.id);    
-      console.log(res);      
+      console.log(this.historia);      
      },
      (error)=>{
       this.router.navigateByUrl('/profile');           
@@ -61,9 +54,18 @@ export class WrittingviewComponent implements OnInit {
     this.historia.setContenido(content);
   }
 
-  public sendStory(formRef: NgForm){
-    /* this.historiaModel = {...this.historiaModel, ...formRef.value} */
-    console.log(this.historia);
-    
+  public saveStory(){
+    this.savingStroy = true;    
+    this.historiaService.saveStoryChanges(this.historia).subscribe(
+      (res:any)=>{        
+       console.log(res);      
+      },
+      (error)=>{
+       console.log(error);                
+      },
+      ()=>{
+        this.savingStroy = false;
+      } 
+     )    
   }
 }

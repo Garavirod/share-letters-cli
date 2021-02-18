@@ -4,7 +4,7 @@
             <div class="row">
                 <h4 class="display-5 highlight-text">Datos generales</h4>
                 <div class="col-lg-6">
-                    <form autocomplete="off" (ngSubmit)="sendStory(formRef)" #formRef="ngForm">
+                    <form autocomplete="off" (ngSubmit)="saveStory()">
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Titluo de la
                                 historia</label>
@@ -36,12 +36,12 @@
                                 #refNarrativa="ngModel"                                                
                                 class="form-select me-2" 
                                 aria-label="Default select example">                                                
-                                <option value="novela">Novela</option>
-                                <option value="cuento">Cuento</option>
-                                <option value="mito">Mito</option>
-                                <option value="anécdota">Anécdota</option>
-                                <option value="fábula">Fábula</option>
-                                <option value="leyenda">Leyenda</option>
+                                <option value="Novela">Novela</option>
+                                <option value="Cuento">Cuento</option>
+                                <option value="Mito">Mito</option>
+                                <option value="Anécdota">Anécdota</option>
+                                <option value="Fábula">Fábula</option>
+                                <option value="Leyenda">Leyenda</option>
                             </select>
                             <small             
                                 class="form-text text-danger"
@@ -75,15 +75,25 @@
                                 type="checkbox" class="form-check-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">¿Has terminado tu historia?</label>
                         </div>
-                        <button 
-                            [disabled]="refTitulo.invalid || refNarrativa.invalid"
+                        <button
+                             
+                            [disabled]="refTitulo.invalid || refNarrativa.invalid || savingStroy"
                             type="submit" 
-                            class="btn btn-dark rounded-pill"><i class="bi bi-save2-fill m-2"></i>Guaradar</button>
+                            class="btn btn-dark rounded-pill">
+                            <div *ngIf="savingStroy; else SavingFinished">
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                Gurdando...
+                            </div>
+                            <ng-template #SavingFinished>
+                                <i class="bi bi-save2-fill m-2"></i>
+                                Guardar
+                            </ng-template>                            
+                        </button>
                     </form>
                 </div>
                 <div class="col-lg-6">
                     <h5>Valoración</h5>
-                    <!-- <app-valoracion [idHistoria]="idHistoria"></app-valoracion> -->
+                    <!-- <app-valoracion [idHistoria]="historia.id"></app-valoracion> -->
                     <button type="button" class="btn btn-danger rounded-pill"><i class="bi bi-trash-fill m-2"></i>Eliminar</button>
 
                 </div>

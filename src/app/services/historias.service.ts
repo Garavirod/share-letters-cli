@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { Historia } from '../models/historia-model';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -42,14 +43,23 @@ export class HistoriasService {
     return this.http.get(endpoint);
   }
 
+  //ADD NEW COMMENTARY
   addStoryComments(comentario:any){
     const endpoint = `${environment.spenBaseURL}/comentarios/new-comentary`;
     return this.http.post(endpoint,comentario);
   }
 
+
+  //CREATE NEW STORY
   createNewStory(historia:any){
     const endpoint = `${environment.spenBaseURL}/historias/new-story`;
     return this.http.post(endpoint,historia);
+  }
+
+  //SAVE STORY CHANGES
+  saveStoryChanges(historia:Historia){
+    const endpoint = `${environment.spenBaseURL}/historias/save-story/${historia.getId()}`;
+    return this.http.put(endpoint,historia);
   }
 
   //FILTTERS
@@ -70,7 +80,7 @@ export class HistoriasService {
   //ALL STORIES BY AUTHOR
 
 
-  //VERIFY IF USR IS THE AUTHOR
+  //WRITTING VERIFY IF USR IS THE AUTHOR
   isAuthorOf(idHistoria:string){
     const headers = new HttpHeaders({
       'spen-tkn': this.auth.getTokenUser(),
