@@ -23,7 +23,8 @@ export class ProfileComponent implements OnInit {
   historia:Historia;
   selectedFile: ImageSnippet | null = null;
 
-  //Model story
+  //loading
+  loading:boolean = false;
 
   constructor(
       private historiasService: HistoriasService, 
@@ -42,6 +43,7 @@ export class ProfileComponent implements OnInit {
   getProfileInformation(){
     
     if(this.tokenInfo){
+      this.loading = true;
       // rest petition based on user's uid
       this.profileService.getProfile(this.tokenInfo.uid).subscribe(
         (res:any)=>{
@@ -58,6 +60,9 @@ export class ProfileComponent implements OnInit {
         },
         (error)=>{
           console.log(error);          
+        },
+        ()=>{
+          this.loading = false;
         }
       )
     }

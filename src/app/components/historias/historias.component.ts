@@ -10,6 +10,8 @@ export class HistoriasComponent implements OnInit {
   @Input() historias: Array<any> = [];
   @Input() autor: string = "Sin asignar";
   @Input() editable: boolean = false;
+
+  wasSearched:boolean = false;
   constructor() { }
 
   public filtros = {
@@ -20,6 +22,7 @@ export class HistoriasComponent implements OnInit {
   }
 
   filterStories(f: NgForm){
+    this.wasSearched = true;
     console.log(f.value);
     
   }

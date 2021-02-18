@@ -39,7 +39,7 @@
         </div>
     </form>
 
-    <div class="col-lg-12 text-center" *ngIf="historias.length === 0; else elseTemplate">
+    <div class="col-lg-12 text-center" *ngIf="historias.length === 0 && wasSearched; else elseTemplate">
         <p class="display-6 highlight-text m-4">No hay historias registradas</p>
         <i class="bi bi-book"></i>  
     </div>
