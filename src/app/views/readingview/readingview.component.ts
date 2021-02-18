@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Escritor } from 'src/app/models/escritor-model';
 import { Historia } from 'src/app/models/historia-model';
@@ -23,8 +22,7 @@ export class ReadingviewComponent implements OnInit {
   // Story id
   idHistoria:string = "";
 
-  //comentary form
-  comentario:string = "";
+ 
 
   constructor(
     private activeRoute:ActivatedRoute,
@@ -64,11 +62,6 @@ export class ReadingviewComponent implements OnInit {
         
       }
     )
-  }
-
-  public sendComent(f: NgForm):void{
-    console.log(f.value);
-    
   }
 
 }

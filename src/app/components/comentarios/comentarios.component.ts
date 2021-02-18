@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { HistoriasService } from 'src/app/services/historias.service';
 
 @Component({
@@ -8,12 +9,38 @@ import { HistoriasService } from 'src/app/services/historias.service';
 })
 export class ComentariosComponent implements OnInit {
   @Input() idHistoria:string = "";
-  comentarios:any;
+  @Input() idReader:string = "";
+  comentarios:any; //all stroy comments
   loading:boolean = false;
+   //comentary form
+   comentario:string = "";
+
   constructor(private historiaService:HistoriasService) { }
 
   ngOnInit(): void {
     this.getComments();
+  }
+
+  public sendComent(f: NgForm):void{
+    const comment = {
+      "idEscritor":this.idReader,
+      "idHistoria":this.idHistoria,
+      "comentario":this.comentario
+    }
+    this.historiaService.addStoryComments(comment).subscribe(
+      (res:any)=>{
+        this.comentario = "";
+        this.getComments();
+        console.log(res);
+      },
+      (error)=>{
+        console.log(error);
+      },
+      ()=>{
+        
+      }
+    )
+    
   }
 
   getComments(){

@@ -35,4 +35,9 @@ export class HistoriasService {
     const endpoint = `${environment.spenBaseURL}/comentarios/comments/${idHistoria}`;
     return this.http.get(endpoint);
   }
+
+  addStoryComments(comentario:any){
+    const endpoint = `${environment.spenBaseURL}/comentarios/new-comentary`;
+    return this.http.post(endpoint,comentario);
+  }
 }
