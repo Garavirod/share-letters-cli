@@ -3,24 +3,16 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-lg-6 text-center p-2">                   
-                    <!-- Preload on update change -->
-                    <div class="text-center" *ngIf="updatingPhoto">
-                        <p class="">Subiendo foto ...</p>
-                        <div class="justify-content-center">
-                          <div class="spinner-border" role="status">
-                            <span class="visually-hidden">Loading...</span>
-                          </div>
-                        </div>
-                    </div>
-                    <!-- end preload on update -->
-                    <!-- Loading image -->
-                    <div class="spinner-grow" role="status" *ngIf="loading; else imageLoaded">
-                        <span class="visually-hidden">Loading...</span>
-                    </div>
+                    <!-- PRELOADING UPDATEING IMAGE -->
+                    <app-loader [isVisible]="updatingPhoto" [message]="'Subiendo foto...'"></app-loader>                    
+                    
+                    <!-- LOADING IMAGE PROFILE -->
+                    <app-loader [isVisible]="loadingStories" *ngIf="loadingStories; else imageLoaded"></app-loader>                                  
                     <ng-template #imageLoaded>
                         <img [src]="escritor.imageURL" class="img-fluid rounded-circle" alt="..." style="width: 30%;">
                     </ng-template>                    
-                    <!-- end loading -->
+                    
+                    <!-- FORM UPDATE IMAGE -->
                     <form class="row g-3 mt-2" autocomplete="off">                       
                         <div class="col-auto">                            
                             <input
@@ -47,6 +39,7 @@
                     </form>
                 </div>
                 <div class="col-lg-6">
+                    <!-- PROFILE INFO -->
                     <h4 class="display-3 highlight-text">{{escritor.username}}</h4>
                     <h5 class="highlight-text "><i>About me</i></h5>
                     <p class="">{{escritor.about}}</p>
@@ -55,7 +48,7 @@
                     <button type="button" class="btn bg-app rounded-pill text-white mt-2" data-bs-toggle="modal"
                         data-bs-target="#newHistoryModal"><i class="bi bi-plus-circle-fill m-2"></i>Crear historia</button>
 
-                    <!-- Modal create new story -->
+                    <!-- MODAL NEW STORY -->
                     <div class="modal fade" id="newHistoryModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">
                         <div class="modal-dialog modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -156,60 +149,13 @@
         </div>
     </div>
 
-    <!-- PROGRESS -->
-
-    <div class="card p-3">
-        <h3 class="display-4 text-center highlight-text">Mis historias</h3>
-        <div class="text-center" *ngIf="loading">
-            <p class="">Cargando historias...</p>
-            <div class="justify-content-center">
-              <div class="spinner-border" role="status">
-                <span class="visually-hidden">Loading...</span>
-              </div>
-            </div>
-        </div>
     
-    <!-- FILTROS FORM -->
-    <p class="display-6">Filtros</p>
-    <form class="row g-3 text-center mb-2" autocomplete="off" (ngSubmit)="filterStories(formFilter)" #formFilter="ngForm">
-        <div class="col-lg-4">
-            <input 
-                class="form-control me-2" 
-                type="search" 
-                placeholder="Títluo" 
-                aria-label="Search"
-                required
-                maxlength="20"
-                name="titulo"
-                [(ngModel)]="filtros.titulo"
-                #titloRef = "ngModel"
-            >
-        </div>
-        <div class="col-lg-4">
-        <select 
-            required
-            name="narrativa"
-            [(ngModel)]="filtros.narrativa"
-            #refNarrativaFilter="ngModel"                                                
-            class="form-select me-2" 
-            aria-label="Default select example">                                                
-            <option value="Novela">Novela</option>
-            <option value="Cuento">Cuento</option>
-            <option value="Mito">Mito</option>
-            <option value="Anécdota">Anécdota</option>
-            <option value="Fábula">Fábula</option>
-            <option value="Leyenda">Leyenda</option>
-        </select>
-        </div>
-        <div class="col-lg-4">
-            <button 
-                class="btn btn-outline-dark rounded-pill" 
-                type="submit"
-                [disabled]="refNarrativaFilter.invalid && titloRef.invalid"
-            >Filtrar</button>
-        </div>
-    </form>
-    <!-- hISTROIAS COMPONENT -->
-    <app-historias [editable]="true" [autor]="escritor.username" [historias]="escritor.historias" ></app-historias>        
+    <div class="card p-3">
+        <!-- LOADER COMPONENT -->
+        <app-loader [isVisible]="loadingStories" [message]="messageLoadingStories"></app-loader>
+        <!-- FILTERS COMPONENT -->
+        <app-filters (passFilters)="getFilters($event)"></app-filters>
+        <!-- hISTROIAS COMPONENT -->
+        <app-historias [editable]="true" [autor]="escritor.username" [historias]="escritor.historias" ></app-historias>        
     </div>
 </section>

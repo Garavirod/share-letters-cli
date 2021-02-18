@@ -10,6 +10,8 @@
         <h3 class="display-4 text-center highlight-text">Historias</h3>
         <!-- LOADER COMPONENT -->
         <app-loader [isVisible]="loadingStories" [message]="messageLoadingStories"></app-loader>
+        <!-- FILTERS COMPONENT -->
+        <app-filters (passFilters)="getFilters($event)"></app-filters>
         <!-- HISTROIAS COMPONENT -->
         <app-historias [editable]="false" [historias]="historias" *ngIf="wasSearchd"></app-historias>        
     </div>

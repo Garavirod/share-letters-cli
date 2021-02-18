@@ -25,7 +25,8 @@ export class ProfileComponent implements OnInit {
   selectedFile: ImageSnippet | null = null;
 
   //loading
-  loading:boolean = false;
+  loadingStories:boolean = false;
+  messageLoadingStories:string = "Cargando historias...";
   updatingPhoto:boolean = false;
   creatingStory:boolean = false;
 
@@ -36,12 +37,6 @@ export class ProfileComponent implements OnInit {
 
   //errors
   errorOnCreate:boolean = false;
-
-  //filtros
-  public filtros = {
-    titulo:'',
-    narrativa:''
-  }
 
   //Photo was selected
   photoSelected:boolean = true;
@@ -62,7 +57,7 @@ export class ProfileComponent implements OnInit {
   }
 
   getProfileInformation(){    
-    this.loading = true;
+    this.loadingStories = true;
     // rest petition based on user's uid
     this.profileService.getProfile(this.uid).subscribe(
       (res:any)=>{
@@ -81,7 +76,7 @@ export class ProfileComponent implements OnInit {
         console.log(error);          
       },
       ()=>{
-        this.loading = false;
+        this.loadingStories = false;
       }
     )
   }
@@ -157,10 +152,10 @@ export class ProfileComponent implements OnInit {
     )
   }
 
-  filterStories(f: NgForm){
-    this.loading = true;          
+  getFilters(filters:any){
+    this.loadingStories = true;          
       //search by autor
-      this.historiasService.filterInAuthor(this.filtros.narrativa,this.filtros.titulo,this.uid)
+      this.historiasService.filterInAuthor(filters.narrativa,filters.titulo,this.uid)
       .subscribe(
         (res:any)=>{
           this.escritor.setHistorias(res.historias);
@@ -170,12 +165,8 @@ export class ProfileComponent implements OnInit {
           console.log(error);          
         },
         ()=>{
-          this.loading = false;
-          this.wasSearched = true;
-          this.filtros =  {
-            titulo:'',
-            narrativa:''
-          }
+          this.loadingStories = false;
+          this.wasSearched = true;         
         }
       )
 

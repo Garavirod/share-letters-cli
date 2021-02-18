@@ -1,0 +1,39 @@
+<p class="display-6">Filtros</p>
+<form class="row g-3 text-center mb-2" autocomplete="off" (ngSubmit)="emitFilter()">
+    <div class="col-lg-4">
+        <input 
+            class="form-control me-2" 
+            type="search" 
+            placeholder="Títluo" 
+            aria-label="Search"
+            required
+            maxlength="20"
+            name="titulo"
+            [(ngModel)]="filtros.titulo"
+            #titloRef = "ngModel"
+        >
+    </div>
+    <div class="col-lg-4">
+    <select 
+        required
+        name="narrativa"
+        [(ngModel)]="filtros.narrativa"
+        #refNarrativaFilter="ngModel"                                                
+        class="form-select me-2" 
+        aria-label="Default select example">                                                
+        <option value="Novela">Novela</option>
+        <option value="Cuento">Cuento</option>
+        <option value="Mito">Mito</option>
+        <option value="Anécdota">Anécdota</option>
+        <option value="Fábula">Fábula</option>
+        <option value="Leyenda">Leyenda</option>
+    </select>
+    </div>
+    <div class="col-lg-4">
+        <button 
+            class="btn btn-outline-dark rounded-pill" 
+            type="submit"
+            [disabled]="refNarrativaFilter.invalid && titloRef.invalid"
+        >Filtrar</button>
+    </div>
+</form>

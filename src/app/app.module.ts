@@ -22,6 +22,7 @@ import { EscritorviewComponent } from './views/escritorview/escritorview.compone
 import { AsignvalueComponent } from './components/asignvalue/asignvalue.component';
 import { NoresultsComponent } from './views/noresults/noresults.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import { FiltersComponent } from './components/filters/filters.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { LoaderComponent } from './components/loader/loader.component';
     AsignvalueComponent,
     NoresultsComponent,
     LoaderComponent,
+    FiltersComponent,
   ],
   imports: [
     BrowserModule,

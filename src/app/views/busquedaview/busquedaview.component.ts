@@ -23,6 +23,22 @@ export class BusquedaviewComponent implements OnInit {
     this.getAllStories();
   }
 
+  getFilters(filters:any){        
+    this.loadingStories = true;
+    this.historiasService.filterInAll(filters.narrativa,filters.titulo).subscribe(
+      (res:any)=>{
+        this.historias = res.historias;               
+      },
+      (error)=>{
+        console.log(error);        
+      },
+      ()=>{
+        this.wasSearchd = true;
+        this.loadingStories = false;
+      }
+    )        
+  }
+
   getAllStories(){
     this.loadingStories = true;
     this.historiasService.getAllStories().subscribe(
