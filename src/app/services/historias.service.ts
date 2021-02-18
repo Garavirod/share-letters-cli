@@ -1,5 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -16,9 +18,12 @@ export class HistoriasService {
     return this.http.get(endpoint);
   }
 
+  //READING
   getHistoriaLectura(idHistoria:string){
     const endpoint = `${environment.spenBaseURL}/historias/story-reading/${idHistoria}`;
-    return this.http.get(endpoint);
+    return this.http.get(endpoint).pipe(
+      catchError(this.ErrorCusomtMannage)
+    );
   }
 
   sendValoracion(valoracion:any){
@@ -64,4 +69,9 @@ export class HistoriasService {
   //ALL STORIES BY AUTHOR
 
 
+  //ErrorManagement
+  ErrorCusomtMannage(error:HttpErrorResponse){
+    console.warn(error);    
+    return throwError('Error en Historia servico');
+  }
 }

@@ -4,7 +4,8 @@ import { Escritor } from 'src/app/models/escritor-model';
 import { Historia } from 'src/app/models/historia-model';
 import { AuthService } from 'src/app/services/auth.service';
 import { HistoriasService } from 'src/app/services/historias.service';
-
+import { throwError, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 @Component({
   selector: 'app-readingview',
   templateUrl: './readingview.component.html',
@@ -13,8 +14,6 @@ import { HistoriasService } from 'src/app/services/historias.service';
 export class ReadingviewComponent implements OnInit {
   results:boolean = true;
   searched:boolean = false;
-  mensaje:string = ""; // message if any error comes up
-
   //models
   escritor:Escritor = new Escritor();
   historia:Historia = new Historia();
@@ -37,7 +36,14 @@ export class ReadingviewComponent implements OnInit {
   }
 
   private getHistoriaReadingMode(){
-    this.historiaService.getHistoriaLectura(this.idHistoria).subscribe(
+    this.historiaService.getHistoriaLectura(this.idHistoria)
+    .pipe(      
+      catchError(err => {
+          console.log('Error ocurrió');          
+          return throwError('Error personalizado');
+      })
+    )
+    .subscribe(
       (res:any)=>{
         //Writter data asignment
         this.escritor.setUsername(res.historia.Escritor.username);
@@ -50,16 +56,11 @@ export class ReadingviewComponent implements OnInit {
         this.historia.setFk_escritor(this.escritor.getId());
         this.historia.setContenido(res.historia.contenido);
         this.historia.setCreatedAt(res.historia.createdAt);
-        this.historia.setUpdatedAt(res.historia.updatedAt);
-        console.log("La historia es >: ",this.historia);  
-           
+        this.historia.setUpdatedAt(res.historia.updatedAt);            
       },
       (error)=>{
         this.results = false;
-        this.searched = true;
-        this.mensaje = error.error.msg;
-        console.log(error.error);
-        
+        this.searched = true;             
       }
     )
   }

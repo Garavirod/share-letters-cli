@@ -1,4 +1,4 @@
-<app-noresults [message]="mensaje" *ngIf="!results && searched; else resultsTemplate"></app-noresults>
+<app-noresults [message]="'La historia no fue econtrada'" *ngIf="!results && searched; else resultsTemplate"></app-noresults>
 <ng-template #resultsTemplate>
     <section class="container-fluid bg-app-container p-4">
     <div class="card p-3 mb-2">
@@ -18,7 +18,7 @@
                         </li>
                     </ul>                    
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-6" *ngIf="escritor.id !== readerID">
                     <h5>¿Te gustó la historia? Valórala con estrellas.</h5>                    
                     <app-asignvalue [idHistoria]="idHistoria" [idEscritor]="readerID"></app-asignvalue>
                 </div>
