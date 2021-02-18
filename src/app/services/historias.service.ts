@@ -1,8 +1,9 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import { environment } from 'src/environments/environment';
 export class HistoriasService {
   
   
-  constructor(private http:HttpClient) {    
+  constructor(private http:HttpClient, private auth:AuthService) {    
   }
 
   getValoracionAVG(idHistoria:string){
@@ -68,6 +69,16 @@ export class HistoriasService {
   }
   //ALL STORIES BY AUTHOR
 
+
+  //VERIFY IF USR IS THE AUTHOR
+  isAuthorOf(idHistoria:string){
+    const headers = new HttpHeaders({
+      'spen-tkn': this.auth.getTokenUser(),
+    });
+
+    const endpoint = `${environment.spenBaseURL}/historias/is-author?idHistoria=${idHistoria}`;
+    return this.http.get(endpoint,{headers});
+  }
 
   //ErrorManagement
   ErrorCusomtMannage(error:HttpErrorResponse){

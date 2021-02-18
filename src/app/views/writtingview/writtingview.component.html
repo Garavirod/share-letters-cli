@@ -13,7 +13,7 @@
                                 class="form-control"
                                 required 
                                 name="titulo"
-                                [(ngModel)]="historiaModel.titulo"
+                                [(ngModel)]="historia.titulo"
                                 [class.is-invalid] = "refTitulo.invalid && refTitulo.touched"
                                 #refTitulo="ngModel"
                                 aria-describedby="" autocomplete="false"
@@ -31,7 +31,7 @@
                             <select 
                                 required
                                 name="narrativa"
-                                [(ngModel)]="historiaModel.narrativa"
+                                [(ngModel)]="historia.narrativa"
                                 [class.is-invalid]="refNarrativa.invalid && refNarrativa.touched"
                                 #refNarrativa="ngModel"                                                
                                 class="form-select me-2" 
@@ -56,13 +56,13 @@
                                 type="text" 
                                 class="form-control"
                                 name="genero"
-                                [(ngModel)]="historiaModel.genero"                                
+                                [(ngModel)]="historia.genero"                                
                             >
                             <div id="emailHelp" class="form-text">Puede quedar vacío.</div>
                         </div>
                         <div class="mb-3">
                             <textarea 
-                                [(ngModel)]="historiaModel.sinopsis"
+                                [(ngModel)]="historia.sinopsis"
                                 name="sinopsis"
                                 class="form-control" placeholder="Agrega sinopsis a tu historia" id="floatingTextarea2"
                                 style="min-height: 100px; max-height: 100px"></textarea>
@@ -70,7 +70,7 @@
                         </div>
                         <div class="mb-3 form-check">
                             <input
-                                [(ngModel)]="historiaModel.status"
+                                [(ngModel)]="historia.status"
                                 name="status" 
                                 type="checkbox" class="form-check-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">¿Has terminado tu historia?</label>
@@ -83,7 +83,7 @@
                 </div>
                 <div class="col-lg-6">
                     <h5>Valoración</h5>
-                    <app-valoracion></app-valoracion>
+                    <!-- <app-valoracion [idHistoria]="idHistoria"></app-valoracion> -->
                     <button type="button" class="btn btn-danger rounded-pill"><i class="bi bi-trash-fill m-2"></i>Eliminar</button>
 
                 </div>
@@ -95,7 +95,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-lg-12">
-                    <h4 class="display-5 highlight-text">Readacción</h4>
+                    <h4 class="display-5 highlight-text">Redacción</h4>
                     <p>Nunca olvides guardar los cambios de tu historia ...</p>  
                     <app-editor (passStoryContent)="recoverContent($event)" ></app-editor>                 
                 </div>

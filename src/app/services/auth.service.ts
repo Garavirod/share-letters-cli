@@ -2,7 +2,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import { UserCredentials } from '../models/UserCredentials';
-import { getUserInfo, isLoggedIn } from '../helpers/jwt';
+import { getAuthToken, getUserInfo, isLoggedIn } from '../helpers/jwt';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -37,6 +37,10 @@ export class AuthService {
   public getUserID():string{
     const tokninfo = getUserInfo();
     return tokninfo.uid;
+  }
+
+  public getTokenUser():any{    
+    return getAuthToken();
   }
 
   public isUserLoggedIn():boolean{
