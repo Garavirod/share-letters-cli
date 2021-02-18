@@ -1,31 +1,20 @@
 <div class="list-group">
-    <div class="list-group-item list-group-item-action">
-      <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1"><a [routerLink]="[ '/escritor', 56 ]">@user</a> dijo:</h5>
-        <small>3 days ago</small>
+  <!-- Loadeer -->
+  <div class="text-center" *ngIf="loading">
+    <p class="">Cargando comentarios...</p>
+    <div class="justify-content-center">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
       </div>
-      <p class="mb-1">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem perspiciatis ut, illo facere obcaecati esse similique veniam et vitae rem, suscipit saepe ea aut recusandae. Error quaerat culpa atque sequi!</p>
     </div>
-    <div class="list-group-item list-group-item-action">
-      <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1"><a [routerLink]="[ '/escritor', 56 ]">@user</a> dijo:</h5>
-        <small>3 days ago</small>
-      </div>
-      <p class="mb-1">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem perspiciatis ut, illo facere obcaecati esse similique veniam et vitae rem, suscipit saepe ea aut recusandae. Error quaerat culpa atque sequi!</p>
-    </div>
-    <div class="list-group-item list-group-item-action">
-      <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1"><a [routerLink]="[ '/escritor', 56 ]">@user</a> dijo:</h5>
-        <small>3 days ago</small>
-      </div>
-      <p class="mb-1">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem perspiciatis ut, illo facere obcaecati esse similique veniam et vitae rem, suscipit saepe ea aut recusandae. Error quaerat culpa atque sequi!</p>
-    </div>
-    <div class="list-group-item list-group-item-action">
-      <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1"><a [routerLink]="[ '/escritor', 56 ]">@user</a> dijo:</h5>
-        <small>3 days ago</small>
-      </div>
-      <p class="mb-1">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem perspiciatis ut, illo facere obcaecati esse similique veniam et vitae rem, suscipit saepe ea aut recusandae. Error quaerat culpa atque sequi!</p>
-    </div>
-    
   </div>
+
+  <div class="list-group-item list-group-item-action" *ngFor="let comentario of comentarios">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1"><a [routerLink]="[ '/escritor', comentario.Escritor.id ]">{{comentario.Escritor.username}}</a> dijo:</h5>
+      <small>{{comentario.createdAt}}</small>
+    </div>
+    <p class="mb-1">{{comentario.comentario}}</p>
+  </div>
+
+</div>

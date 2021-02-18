@@ -30,4 +30,9 @@ export class HistoriasService {
     const endpoint = `${environment.spenBaseURL}/valoracion/valued?idEscritor=${idEscritor}&idHistoria=${idHistoria}`;
     return this.http.get(endpoint);
   }
+
+  getStoryComments(idHistoria:string){
+    const endpoint = `${environment.spenBaseURL}/comentarios/comments/${idHistoria}`;
+    return this.http.get(endpoint);
+  }
 }

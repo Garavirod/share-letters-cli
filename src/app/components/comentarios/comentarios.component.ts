@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { HistoriasService } from 'src/app/services/historias.service';
 
 @Component({
   selector: 'app-comentarios',
@@ -6,10 +7,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./comentarios.component.css']
 })
 export class ComentariosComponent implements OnInit {
-
-  constructor() { }
+  @Input() idHistoria:string = "";
+  comentarios:any;
+  loading:boolean = false;
+  constructor(private historiaService:HistoriasService) { }
 
   ngOnInit(): void {
+    this.getComments();
+  }
+
+  getComments(){
+    this.loading = true;
+    this.historiaService.getStoryComments(this.idHistoria).subscribe(
+      (res:any)=>{
+        this.comentarios = res.comments;
+        console.log(res);
+      },
+      (error)=>{
+        console.log(error);
+      },
+      ()=>{
+        this.loading = false;
+      }
+    )
   }
 
 }
