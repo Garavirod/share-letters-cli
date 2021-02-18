@@ -8,6 +8,9 @@
 
     <div class="card p-3">
         <h3 class="display-4 text-center highlight-text">Historias</h3>
-        <app-historias [editable]="false"></app-historias>        
+        <!-- LOADER COMPONENT -->
+        <app-loader [isVisible]="loadingStories" [message]="messageLoadingStories"></app-loader>
+        <!-- HISTROIAS COMPONENT -->
+        <app-historias [editable]="false" [historias]="historias" *ngIf="wasSearchd"></app-historias>        
     </div>
 </section>

@@ -21,6 +21,7 @@ import { BusquedaviewComponent } from './views/busquedaview/busquedaview.compone
 import { EscritorviewComponent } from './views/escritorview/escritorview.component';
 import { AsignvalueComponent } from './components/asignvalue/asignvalue.component';
 import { NoresultsComponent } from './views/noresults/noresults.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { NoresultsComponent } from './views/noresults/noresults.component';
     EscritorviewComponent,
     AsignvalueComponent,
     NoresultsComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,

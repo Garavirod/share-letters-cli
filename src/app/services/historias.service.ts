@@ -46,6 +46,7 @@ export class HistoriasService {
     return this.http.post(endpoint,historia);
   }
 
+  //FILTTERS
   filterInAuthor(narrativa:string, title:string, idEscritor:string){
     const endpoint = `${environment.spenBaseURL}/historias/filters-by-auth?narrativa=${narrativa}&title=${title}&idEscritor=${idEscritor}`;
     return this.http.get(endpoint);
@@ -54,4 +55,13 @@ export class HistoriasService {
     const endpoint = `${environment.spenBaseURL}/historias/filters-all?narrativa=${narrativa}&title=${title}`;
     return this.http.get(endpoint);
   }
+
+  //ALL STORIES
+  getAllStories(){
+    const endpoint = `${environment.spenBaseURL}/historias/all-stories`;
+    return this.http.get(endpoint);
+  }
+  //ALL STORIES BY AUTHOR
+
+
 }
