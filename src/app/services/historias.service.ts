@@ -40,4 +40,13 @@ export class HistoriasService {
     const endpoint = `${environment.spenBaseURL}/comentarios/new-comentary`;
     return this.http.post(endpoint,comentario);
   }
+
+  filterInAuthor(narrativa:string, title:string, idEscritor:string){
+    const endpoint = `${environment.spenBaseURL}/historias/filters-by-auth?narrativa=${narrativa}&title=${title}&idEscritor=${idEscritor}`;
+    return this.http.get(endpoint);
+  }
+  filterInAll(narrativa:string, title:string){
+    const endpoint = `${environment.spenBaseURL}/historias/filters-all?narrativa=${narrativa}&title=${title}`;
+    return this.http.get(endpoint);
+  }
 }

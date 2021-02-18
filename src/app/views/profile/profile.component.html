@@ -75,12 +75,12 @@
                                                 #refNarrativa="ngModel"                                                
                                                 class="form-select me-2" 
                                                 aria-label="Default select example">                                                
-                                                <option value="novela">Novela</option>
-                                                <option value="cuento">Cuento</option>
-                                                <option value="mito">Mito</option>
-                                                <option value="anécdota">Anécdota</option>
-                                                <option value="fábula">Fábula</option>
-                                                <option value="leyenda">Leyenda</option>
+                                                <option value="Novela">Novela</option>
+                                                <option value="Cuento">Cuento</option>
+                                                <option value="Mito">Mito</option>
+                                                <option value="Anécdota">Anécdota</option>
+                                                <option value="Fábula">Fábula</option>
+                                                <option value="Leyenda">Leyenda</option>
                                             </select>
                                             <small             
                                                 class="form-text text-danger"
@@ -113,6 +113,8 @@
         </div>
     </div>
 
+    <!-- PROGRESS -->
+
     <div class="card p-3">
         <h3 class="display-4 text-center highlight-text">Mis historias</h3>
         <div class="text-center" *ngIf="loading">
@@ -122,7 +124,49 @@
                 <span class="visually-hidden">Loading...</span>
               </div>
             </div>
-          </div>
-        <app-historias [editable]="true" [autor]="escritor.username" [historias]="escritor.historias" ></app-historias>        
+        </div>
+    
+    <!-- FILTROS FORM -->
+    <p class="display-6">Filtros</p>
+    <form class="row g-3 text-center mb-2" autocomplete="off" (ngSubmit)="filterStories(formFilter)" #formFilter="ngForm">
+        <div class="col-lg-4">
+            <input 
+                class="form-control me-2" 
+                type="search" 
+                placeholder="Títluo" 
+                aria-label="Search"
+                required
+                maxlength="20"
+                name="titulo"
+                [(ngModel)]="filtros.titulo"
+                #titloRef = "ngModel"
+            >
+        </div>
+        <div class="col-lg-4">
+        <select 
+            required
+            name="narrativa"
+            [(ngModel)]="filtros.narrativa"
+            #refNarrativaFilter="ngModel"                                                
+            class="form-select me-2" 
+            aria-label="Default select example">                                                
+            <option value="Novela">Novela</option>
+            <option value="Cuento">Cuento</option>
+            <option value="Mito">Mito</option>
+            <option value="Anécdota">Anécdota</option>
+            <option value="Fábula">Fábula</option>
+            <option value="Leyenda">Leyenda</option>
+        </select>
+        </div>
+        <div class="col-lg-4">
+            <button 
+                class="btn btn-outline-dark rounded-pill" 
+                type="submit"
+                [disabled]="refNarrativaFilter.invalid && titloRef.invalid"
+            >Filtrar</button>
+        </div>
+    </form>
+    <!-- hISTROIAS COMPONENT -->
+    <app-historias [editable]="true" [autor]="escritor.username" [historias]="escritor.historias" ></app-historias>        
     </div>
 </section>

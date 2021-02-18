@@ -1,49 +1,8 @@
 <div class="row justify-content-center mt-3 ">
-    <p class="display-6">Filtros</p>
-    <form class="row g-3 text-center mb-2" autocomplete="off" (ngSubmit)="filterStories(formFilter)" #formFilter="ngForm">
-        <div class="col-lg-4">
-            <input 
-                class="form-control me-2" 
-                type="search" 
-                placeholder="Títluo" 
-                aria-label="Search"
-                required
-                maxlength="20"
-                name="titulo"
-                [(ngModel)]="filtros.titulo"
-                #titloRef = "ngModel"
-            >
-        </div>
-        <div class="col-lg-4">
-        <select 
-            required
-            name="narrativa"
-            [(ngModel)]="filtros.narrativa"
-            #refNarrativa="ngModel"                                                
-            class="form-select me-2" 
-            aria-label="Default select example">                                                
-            <option value="novela">Novela</option>
-            <option value="cuento">Cuento</option>
-            <option value="mito">Mito</option>
-            <option value="anécdota">Anécdota</option>
-            <option value="fábula">Fábula</option>
-            <option value="leyenda">Leyenda</option>
-        </select>
-        </div>
-        <div class="col-lg-4">
-            <button 
-                class="btn btn-outline-dark rounded-pill" 
-                type="submit"
-                [disabled]="refNarrativa.invalid && titloRef.invalid"
-            >Filtrar</button>
-        </div>
-    </form>
-
-    <div class="col-lg-12 text-center" *ngIf="historias.length === 0 && wasSearched; else elseTemplate">
+    <div class="col-lg-12 text-center" *ngIf="historias.length === 0; else elseTemplate">
         <p class="display-6 highlight-text m-4">No hay historias registradas</p>
         <i class="bi bi-book"></i>  
     </div>
-    
     <ng-template #elseTemplate>
         <div class="card col-lg-4 m-2" style="width: 18rem;" *ngFor="let hist of historias">
             <div class="card-body">

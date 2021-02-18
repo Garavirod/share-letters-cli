@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { getUserInfo } from 'src/app/helpers/jwt';
 import { Escritor } from 'src/app/models/escritor-model';
 import { Historia } from 'src/app/models/historia-model';
+import { AuthService } from 'src/app/services/auth.service';
 import { HistoriasService } from 'src/app/services/historias.service';
 import { ProfileService } from 'src/app/services/profile.service';
 
@@ -18,7 +19,7 @@ class ImageSnippet {
 
 
 export class ProfileComponent implements OnInit {
-  private tokenInfo:any = null;
+  private uid:string="";
   escritor:Escritor;
   historia:Historia;
   selectedFile: ImageSnippet | null = null;
@@ -26,47 +27,52 @@ export class ProfileComponent implements OnInit {
   //loading
   loading:boolean = false;
 
+  //was searchd
+  wasSearched:boolean = false;
+
+  //filtros
+  public filtros = {
+    titulo:'',
+    narrativa:''
+  }
+
   constructor(
       private historiasService: HistoriasService, 
       private profileService: ProfileService,
+      private auth: AuthService
   ) { 
     this.escritor = new Escritor();
     this.historia = new Historia();
-    this.tokenInfo = getUserInfo();
+    this.uid = this.auth.getUserID();
    };
 
   ngOnInit(): void {
-    this.getProfileInformation();
-    console.log("Token Info >: ",this.tokenInfo);    
+    this.getProfileInformation();   
   }
 
-  getProfileInformation(){
-    
-    if(this.tokenInfo){
-      this.loading = true;
-      // rest petition based on user's uid
-      this.profileService.getProfile(this.tokenInfo.uid).subscribe(
-        (res:any)=>{
-          //Asignación de datos del escritor
-          this.escritor.setAbout(res.escritor.about);
-          this.escritor.setUsername(res.escritor.username);
-          this.escritor.setId(res.escritor.about);
-          this.escritor.setEmail(res.escritor.email);
-          this.escritor.setImageURL(res.escritor.imageURL);
-          this.escritor.setNumHist(res.numHist);
-          //Asignación de historias
-          this.escritor.setHistorias(res.historias);
-          console.log(res);          
-        },
-        (error)=>{
-          console.log(error);          
-        },
-        ()=>{
-          this.loading = false;
-        }
-      )
-    }
-
+  getProfileInformation(){    
+    this.loading = true;
+    // rest petition based on user's uid
+    this.profileService.getProfile(this.uid).subscribe(
+      (res:any)=>{
+        //Asignación de datos del escritor
+        this.escritor.setAbout(res.escritor.about);
+        this.escritor.setUsername(res.escritor.username);
+        this.escritor.setId(res.escritor.id);
+        this.escritor.setEmail(res.escritor.email);
+        this.escritor.setImageURL(res.escritor.imageURL);
+        this.escritor.setNumHist(res.numHist);
+        //Asignación de historias
+        this.escritor.setHistorias(res.historias);
+        console.log(res);          
+      },
+      (error)=>{
+        console.log(error);          
+      },
+      ()=>{
+        this.loading = false;
+      }
+    )
   }
 
   createStory(formRef: NgForm):void{
@@ -91,5 +97,29 @@ export class ProfileComponent implements OnInit {
       console.log("ningun arivho seleccionado");
       
     }
+  }
+
+  filterStories(f: NgForm){
+    this.loading = true;          
+      //search by autor
+      this.historiasService.filterInAuthor(this.filtros.narrativa,this.filtros.titulo,this.uid)
+      .subscribe(
+        (res:any)=>{
+          this.escritor.setHistorias(res.historias);
+          console.log(res);          
+        },
+        (error)=>{
+          console.log(error);          
+        },
+        ()=>{
+          this.loading = false;
+          this.wasSearched = true;
+          this.filtros =  {
+            titulo:'',
+            narrativa:''
+          }
+        }
+      )
+
   }
 }
