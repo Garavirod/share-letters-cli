@@ -27,9 +27,15 @@ export class ProfileComponent implements OnInit {
   //loading
   loading:boolean = false;
   updatingPhoto:boolean = false;
+  creatingStory:boolean = false;
 
-  //was searchd
+
+  //was
   wasSearched:boolean = false;
+  triedCreate:boolean = false;
+
+  //errors
+  errorOnCreate:boolean = false;
 
   //filtros
   public filtros = {
@@ -80,8 +86,32 @@ export class ProfileComponent implements OnInit {
     )
   }
 
-  createStory(formRef: NgForm):void{
-    console.log(formRef.value);    
+  createStory(formRef: NgForm):void{   
+    
+    const story = {
+      "titulo": this.historia.getTitulo(),
+      "narrativa":this.historia.getNarrativa(),
+      "genero":this.historia.getGenero(),
+      "id":this.uid
+    }
+    this,this.creatingStory = true;    
+    this.historiasService.createNewStory(story).subscribe(
+      (res:any)=>{
+        this,this.creatingStory = false; 
+        this.triedCreate = true;   
+        this.errorOnCreate = false;
+        this.escritor.addNewStory(res.historia);
+        console.log(res);           
+      },
+      (error)=>{
+        this,this.creatingStory = false; 
+        this.triedCreate = true;   
+        this.errorOnCreate = true;
+        console.log(error);
+      }
+    )
+
+    console.log(story);    
   }
 
   changePhoto(imageInput: any):void{

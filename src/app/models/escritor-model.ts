@@ -7,7 +7,7 @@ export class Escritor {
     public about:    string;
     public imageURL: string;
     public numHist: number;
-    public historias: [any] | [];
+    public historias: Array<any>;
 
     constructor(){
         this.id       = "";
@@ -19,11 +19,11 @@ export class Escritor {
         this.historias = [];
     }
 
-    public getHistorias(): [any] | [] {
+    public getHistorias(): Array<any>  {
         return this.historias;
     }
 
-    public setHistorias(historias: [any] | []): void {
+    public setHistorias(historias: Array<any>): void {
         this.historias = historias;
     }
 
@@ -74,6 +74,10 @@ export class Escritor {
 
     public setNumHist(numHist: number): void {
         this.numHist = numHist;
+    }
+
+    public addNewStory(historia:any){
+        this.historias.unshift(historia);
     }
 
     

@@ -41,6 +41,11 @@ export class HistoriasService {
     return this.http.post(endpoint,comentario);
   }
 
+  createNewStory(historia:any){
+    const endpoint = `${environment.spenBaseURL}/historias/new-story`;
+    return this.http.post(endpoint,historia);
+  }
+
   filterInAuthor(narrativa:string, title:string, idEscritor:string){
     const endpoint = `${environment.spenBaseURL}/historias/filters-by-auth?narrativa=${narrativa}&title=${title}&idEscritor=${idEscritor}`;
     return this.http.get(endpoint);

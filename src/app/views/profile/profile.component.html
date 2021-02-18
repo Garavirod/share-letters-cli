@@ -2,8 +2,8 @@
     <div class="card p-3 mb-2">
         <div class="card-body">
             <div class="row">
-                <div class="col-lg-6 text-center p-2">
-                    <!-- Preload on change -->
+                <div class="col-lg-6 text-center p-2">                   
+                    <!-- Preload on update change -->
                     <div class="text-center" *ngIf="updatingPhoto">
                         <p class="">Subiendo foto ...</p>
                         <div class="justify-content-center">
@@ -12,8 +12,15 @@
                           </div>
                         </div>
                     </div>
-                    <!-- end preload -->
-                    <img [src]="escritor.imageURL" class="img-fluid rounded-circle" alt="..." style="width: 30%;">
+                    <!-- end preload on update -->
+                    <!-- Loading image -->
+                    <div class="spinner-grow" role="status" *ngIf="loading; else imageLoaded">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <ng-template #imageLoaded>
+                        <img [src]="escritor.imageURL" class="img-fluid rounded-circle" alt="..." style="width: 30%;">
+                    </ng-template>                    
+                    <!-- end loading -->
                     <form class="row g-3 mt-2" autocomplete="off">                       
                         <div class="col-auto">                            
                             <input
@@ -48,14 +55,14 @@
                     <button type="button" class="btn bg-app rounded-pill text-white mt-2" data-bs-toggle="modal"
                         data-bs-target="#newHistoryModal"><i class="bi bi-plus-circle-fill m-2"></i>Crear historia</button>
 
-                    <!-- Modal -->
+                    <!-- Modal create new story -->
                     <div class="modal fade" id="newHistoryModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">
                         <div class="modal-dialog modal-dialog modal-dialog-centered modal-dialog-scrollable">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLabel">Crear nueva historia</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    <button [disabled]="creatingStory" type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
@@ -117,10 +124,30 @@
                                         </div>
                                         <button [disabled]="refNarrativa.invalid || titleRef.invalid" type="submit" class="btn bg-app text-white rounded-pill">Crear</button>
                                     </form>
-                                </div>
+                                    <!-- Creating story -->
+                                    <div class="row text-center justify-content-center" *ngIf="creatingStory;">
+                                        <p>Creando historia</p>
+                                        <div class="spinner-grow text-center" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>                                           
+                                    </div>                
+                                    <!-- end Creating -->
+
+                                    <!-- Link writting -->
+                                    <div class="row text-center" *ngIf="triedCreate">
+                                        <small class="form-text text-danger text-center" *ngIf="errorOnCreate; else ErrorOnCreateStory">                                                                                           
+                                            La historia no pudo ser creada.
+                                        </small>
+                                        <ng-template #ErrorOnCreateStory>
+                                            <p class="text-success">Historia creada exitosamente, acceda al link</p>
+                                            <a [routerLink]="[ '/writting', 345 ]">Comenzar a escribir</a>                                        
+                                        </ng-template> 
+                                    </div>
+                                    <!-- end Link writting -->
+                                    </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
-                                </div>
+                                    <button [disabled]="creatingStory" type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+                                </div>                                
                             </div>
                         </div>
                     </div>
