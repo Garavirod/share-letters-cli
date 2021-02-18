@@ -26,6 +26,7 @@ export class ProfileComponent implements OnInit {
 
   //loading
   loading:boolean = false;
+  updatingPhoto:boolean = false;
 
   //was searchd
   wasSearched:boolean = false;
@@ -35,6 +36,10 @@ export class ProfileComponent implements OnInit {
     titulo:'',
     narrativa:''
   }
+
+  //Photo was selected
+  photoSelected:boolean = true;
+
 
   constructor(
       private historiasService: HistoriasService, 
@@ -82,21 +87,44 @@ export class ProfileComponent implements OnInit {
   changePhoto(imageInput: any):void{
     const file: File = imageInput.files[0];
     if(file){
+      this.updatingPhoto = true;
       const reader = new FileReader();
       reader.addEventListener('load',(event:any) => {
         this.selectedFile = new ImageSnippet(event.target.result, file);
         this.profileService.saveImage(this.selectedFile.file).subscribe(
           (res:any)=>{            
-            //Asign new url profile image
-            this.escritor.setImageURL(res.secure_url);              
+            this.escritor.setImageURL(res.secure_url); // //Asign new url profile image         
+            this.updatePhotoOnBdd(); // update new image url on BDD            
+          },
+          (error)=>{
+            console.log(error);
+          },
+          ()=>{
+            this.photoSelected = true;
+            this.updatingPhoto = false;
+            this.selectedFile = null;
           }
         )
       });   
       reader.readAsDataURL(file); 
     }else{
-      console.log("ningun arivho seleccionado");
-      
+      this.photoSelected=false;     
     }
+  }
+
+  private updatePhotoOnBdd(){
+    const urlObj = {"imageURL":this.escritor.imageURL};
+    this.profileService.updateImageOnBDD(urlObj, this.uid).subscribe(
+      (res:any)=>{            
+        console.log(res);           
+      },
+      (error)=>{
+        console.log(error);
+      },
+      ()=>{
+        
+      }
+    )
   }
 
   filterStories(f: NgForm){

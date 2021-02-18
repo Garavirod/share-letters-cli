@@ -3,6 +3,16 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-lg-6 text-center p-2">
+                    <!-- Preload on change -->
+                    <div class="text-center" *ngIf="updatingPhoto">
+                        <p class="">Subiendo foto ...</p>
+                        <div class="justify-content-center">
+                          <div class="spinner-border" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                          </div>
+                        </div>
+                    </div>
+                    <!-- end preload -->
                     <img [src]="escritor.imageURL" class="img-fluid rounded-circle" alt="..." style="width: 30%;">
                     <form class="row g-3 mt-2" autocomplete="off">                       
                         <div class="col-auto">                            
@@ -21,6 +31,12 @@
                                 (click)="changePhoto(refPhoto)"                                
                                 class="btn bg-app rounded-pill text-white"><i class="bi bi-camera-fill"></i> Cambiar foto</button>
                         </div>
+                        <small             
+                            class="form-text text-danger"
+                            *ngIf="!photoSelected"
+                            >
+                            Ningun arichivo seleccionado
+                        </small>
                     </form>
                 </div>
                 <div class="col-lg-6">

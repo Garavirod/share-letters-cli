@@ -19,6 +19,11 @@ export class ProfileService {
     return this.http.post(environment.cloudinaryURL,formData);
   };
 
+  updateImageOnBDD(newURL:any, uid:string){
+    const endpoint:string = `${environment.spenBaseURL}/credentials/updateImage/${uid}`;
+    return this.http.put(endpoint,newURL);
+  }
+
   getProfile(uid:string){
     const endpoint:string = `${environment.spenBaseURL}/credentials/writer-profile/${uid}`;
     return this.http.get(endpoint);
