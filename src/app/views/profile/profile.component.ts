@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit {
   escritor:Escritor;
   historia:Historia;
   selectedFile: ImageSnippet | null = null;
-
+  
   //loading
   loadingStories:boolean = false;
   messageLoadingStories:string = "Cargando historias...";
@@ -50,6 +50,7 @@ export class ProfileComponent implements OnInit {
     this.escritor = new Escritor();
     this.historia = new Historia();
     this.uid = this.auth.getUserID();
+    
    };
 
   ngOnInit(): void {
@@ -95,7 +96,7 @@ export class ProfileComponent implements OnInit {
         this,this.creatingStory = false; 
         this.triedCreate = true;   
         this.errorOnCreate = false;
-        this.escritor.addNewStory(res.historia);
+        this.escritor.addNewStory(res.historia);        
         console.log(res);           
       },
       (error)=>{

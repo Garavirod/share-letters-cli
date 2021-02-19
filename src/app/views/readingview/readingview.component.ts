@@ -20,9 +20,7 @@ export class ReadingviewComponent implements OnInit {
   readerID:string = "";
   // Story id
   idHistoria:string = "";
-
- 
-
+  
   constructor(
     private activeRoute:ActivatedRoute,
     private historiaService:HistoriasService,

@@ -7,10 +7,9 @@ import { ToolbarService, LinkService, ImageService, HtmlEditorService } from '@s
 })
 export class EditorComponent implements OnInit {
   @Output() passStoryContent:EventEmitter<string>;
-  @Input() contenido:string = "Aui deberia haber historias ...";
+  @Input() contenido:string = "";
   @Input() isEditable:string = "";
-
-  public value:string ="";
+  
 
   public tools: object = {
     items:['Undo', 'Redo', '|',
@@ -37,7 +36,6 @@ export class EditorComponent implements OnInit {
   }
 
   ngOnInit(): void { 
-    this.value = this.contenido;
     if(this.isEditable === 'readonly'){
       console.log("contendio es ", this.contenido);
       this.tools = {
@@ -52,7 +50,7 @@ export class EditorComponent implements OnInit {
     }
   }  
   public emitStoryContent():void{
-    this.passStoryContent.emit( this.value );    
+    this.passStoryContent.emit( this.contenido );    
   }
 }
 

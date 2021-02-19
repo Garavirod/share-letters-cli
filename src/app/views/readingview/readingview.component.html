@@ -14,7 +14,7 @@
                         <li class="list-group-item">Publicada: {{historia.createdAt}}</li>
                         <li class="list-group-item">Actualizada: {{historia.updatedAt}}</li>
                         <li class="list-group-item">
-                            <app-valoracion [idHistoria]="idHistoria" ></app-valoracion>
+                            <app-valoracion [idHistoria]="idHistoria"></app-valoracion>
                         </li>
                     </ul>                    
                 </div>
@@ -32,7 +32,7 @@
                 <div class="col-lg-12">
                     <h4 class="display-5 highlight-text">Modo lectura</h4>
                     <p>Recuaerda que esta historia es propiedad de quien la escrtibe, si la compartes no olvdes atribuir al autor.</p>                    
-                    <app-editor [isEditable]="'readonly'">hola 34</app-editor>                 
+                    <!-- <app-editor [isEditable]="'readonly'"></app-editor>  -->                
                 </div>
             </div>
         </div>
