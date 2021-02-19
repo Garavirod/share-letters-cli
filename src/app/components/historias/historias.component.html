@@ -9,12 +9,18 @@
                 <h5 class="card-title display-6">{{hist.titulo}}</h5>
                 <ul class="list-group list-group-flush">
                     <li class="" *ngIf="autor !== 'Sin asignar'; else elseAuthor">
-                        Autor: <a [routerLink]="[ '/escritor', hist.fk_escritor ]">{{autor}}</a>
+                        Autor: <b>{{autor}}</b>
                     </li>
                     <ng-template #elseAuthor>
-                        <li class="">
+                        <li class="" *ngIf="uid !== hist.fk_escritor; else elseAuthor2">
                             Autor: <a [routerLink]="[ '/escritor', hist.fk_escritor ]">{{hist.Escritor.username}}</a>
                         </li>
+                        <ng-template #elseAuthor2>
+                            <li class="">
+                                Autor: Tú
+                            </li>
+                        </ng-template>
+                        
                     </ng-template>                    
                     <li class="">Narrativa: {{hist.narrativa}}</li>
                     <li class="">Género: {{hist.genero}}</li>
