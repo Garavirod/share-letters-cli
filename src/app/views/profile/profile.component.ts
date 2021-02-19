@@ -60,7 +60,7 @@ export class ProfileComponent implements OnInit {
   getProfileInformation(){    
     this.loadingStories = true;
     // rest petition based on user's uid
-    this.profileService.getProfile(this.uid).subscribe(
+    this.profileService.getProfile(this.uid,"autor").subscribe(
       (res:any)=>{
         //Asignación de datos del escritor
         this.escritor.setAbout(res.escritor.about);

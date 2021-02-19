@@ -24,8 +24,8 @@ export class ProfileService {
     return this.http.put(endpoint,newURL);
   }
 
-  getProfile(uid:string){
-    const endpoint:string = `${environment.spenBaseURL}/credentials/writer-profile/${uid}`;
+  getProfile(uid:string, type:string){
+    const endpoint:string = `${environment.spenBaseURL}/credentials/writer-profile?idEscritor=${uid}&type=${type}`;
     return this.http.get(endpoint);
   }
 }

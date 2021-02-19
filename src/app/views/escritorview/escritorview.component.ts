@@ -37,7 +37,7 @@ export class EscritorviewComponent implements OnInit {
 
   getWritterInformation(){
     this.loadingStories=true;
-    this.profile.getProfile(this.uid).subscribe(
+    this.profile.getProfile(this.uid,"reader").subscribe(
       (res:any)=>{
         //Asign Escritor data to object Escritor
         this.escritor.setAbout(res.escritor.about);
