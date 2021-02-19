@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserCredentials } from 'src/app/models/UserCredentials';
 import { AuthService } from 'src/app/services/auth.service';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-login',
@@ -24,6 +25,12 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl('profile');
       },
       (error)=>{
+        Swal.fire({
+          title: 'Error!',
+          text: `${error.error.msg}`,
+          icon: 'error',
+          confirmButtonText: 'Ok'
+        })
         console.log(error);        
       }  
     );

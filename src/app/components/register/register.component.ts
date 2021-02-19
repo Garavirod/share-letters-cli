@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserCredentials } from 'src/app/models/UserCredentials';
 import { AuthService } from 'src/app/services/auth.service';
-
+import Swal from 'sweetalert2'
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -25,6 +25,12 @@ export class RegisterComponent implements OnInit {
         this.router.navigateByUrl('profile');
       },
       (error)=>{
+        Swal.fire({
+          title: 'Error!',
+          text: `${error.error.message}`,
+          icon: 'error',
+          confirmButtonText: 'Ok'
+        })
         console.log(error);        
       }
     )      
