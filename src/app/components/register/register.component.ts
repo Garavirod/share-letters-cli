@@ -21,6 +21,7 @@ export class RegisterComponent implements OnInit {
     this.authService.register(this.credentials).subscribe(
       (res:any)=>{
         localStorage.setItem('spen-tkn',res.token);
+        this.authService.userLogged$.emit(true);
         this.router.navigateByUrl('profile');
       },
       (error)=>{
