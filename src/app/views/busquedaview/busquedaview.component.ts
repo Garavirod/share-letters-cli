@@ -27,7 +27,7 @@ export class BusquedaviewComponent implements OnInit {
 
   getFilters(filters:any){        
     this.loadingStories = true;
-    this.historiasService.filterInAll(filters.narrativa,filters.titulo).subscribe(
+    this.historiasService.filterInAll(filters.narrativa,filters.titulo, filters.todas).subscribe(
       (res:any)=>{
         this.historias = res.historias;  
         console.log(res);

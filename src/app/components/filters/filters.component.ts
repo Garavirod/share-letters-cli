@@ -11,7 +11,8 @@ export class FiltersComponent implements OnInit {
   //filtros
   public filtros = {
     titulo:'',
-    narrativa:''
+    narrativa:'',
+    todas:''
   }
 
   constructor() { 
@@ -22,10 +23,12 @@ export class FiltersComponent implements OnInit {
   }
 
   emitFilter():void{
+    console.log(this.filtros);    
     this.passFilters.emit(this.filtros);
     this.filtros =  {
       titulo:'',
-      narrativa:''
+      narrativa:'',
+      todas:''
     }
   }
 

@@ -1,6 +1,6 @@
 <p class="display-6">Filtros</p>
 <form class="row g-3 text-center mb-2" autocomplete="off" (ngSubmit)="emitFilter()">
-    <div class="col-lg-4">
+    <div class="col-lg-3">
         <input 
             class="form-control me-2" 
             type="search" 
@@ -13,7 +13,7 @@
             #titloRef = "ngModel"
         >
     </div>
-    <div class="col-lg-4">
+    <div class="col-lg-3">
     <select 
         required
         name="narrativa"
@@ -29,11 +29,17 @@
         <option value="Leyenda">Leyenda</option>
     </select>
     </div>
-    <div class="col-lg-4">
+    <div class="col-lg-3">
+        <input required name="todas" [(ngModel)]="filtros.todas" #refTodasFilter="ngModel" class="form-check-input" type="checkbox" id="flexCheckChecked">
+        <label class="form-check-label" for="flexCheckChecked">
+             Traer todas
+        </label>
+    </div>
+    <div class="col-lg-3 text-center">
         <button 
             class="btn btn-outline-dark rounded-pill" 
             type="submit"
-            [disabled]="refNarrativaFilter.invalid && titloRef.invalid"
+            [disabled]="refNarrativaFilter.invalid && titloRef.invalid && refTodasFilter.invalid"
         >Filtrar</button>
     </div>
 </form>

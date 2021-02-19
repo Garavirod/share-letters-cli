@@ -68,12 +68,16 @@ export class HistoriasService {
   }
 
   //FILTTERS
-  filterInAuthor(narrativa:string, title:string, idEscritor:string){
-    const endpoint = `${environment.spenBaseURL}/historias/filters-by-auth?narrativa=${narrativa}&title=${title}&idEscritor=${idEscritor}`;
+  filterInProfile(narrativa:string, title:string, idEscritor:string, todas:boolean){
+    const endpoint = `${environment.spenBaseURL}/historias/filters-by-profile?narrativa=${narrativa}&title=${title}&idEscritor=${idEscritor}&todas=${todas}`;
     return this.http.get(endpoint);
   }
-  filterInAll(narrativa:string, title:string){
-    const endpoint = `${environment.spenBaseURL}/historias/filters-all?narrativa=${narrativa}&title=${title}`;
+  filterInAuthor(narrativa:string, title:string, idEscritor:string, todas:boolean){
+    const endpoint = `${environment.spenBaseURL}/historias/filters-by-auth?narrativa=${narrativa}&title=${title}&idEscritor=${idEscritor}&todas=${todas}`;
+    return this.http.get(endpoint);
+  }
+  filterInAll(narrativa:string, title:string,todas:boolean){
+    const endpoint = `${environment.spenBaseURL}/historias/filters-all?narrativa=${narrativa}&title=${title}&todas=${todas}`;
     return this.http.get(endpoint);
   }
 

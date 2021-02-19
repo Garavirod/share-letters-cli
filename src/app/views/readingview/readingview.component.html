@@ -20,7 +20,7 @@
                 </div>
                 <div class="col-lg-6" *ngIf="escritor.id !== readerID">
                     <h5>¿Te gustó la historia? Valórala con estrellas.</h5>                    
-                    <app-asignvalue [idHistoria]="idHistoria" [idEscritor]="readerID"></app-asignvalue>
+                    <app-asignvalue [idHistoria]="idHistoria" [idEscritor]="readerID" [idAutor]="escritor.id"></app-asignvalue>
                 </div>
             </div>
         </div>

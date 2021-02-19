@@ -156,7 +156,7 @@ export class ProfileComponent implements OnInit {
   getFilters(filters:any){
     this.loadingStories = true;          
       //search by autor
-      this.historiasService.filterInAuthor(filters.narrativa,filters.titulo,this.uid)
+      this.historiasService.filterInProfile(filters.narrativa,filters.titulo,this.uid,filters.todas)
       .subscribe(
         (res:any)=>{
           this.escritor.setHistorias(res.historias);

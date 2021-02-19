@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 import { HistoriasService } from 'src/app/services/historias.service';
 
 @Component({
@@ -9,13 +10,15 @@ import { HistoriasService } from 'src/app/services/historias.service';
 export class AsignvalueComponent implements OnInit {
   @Input() idHistoria: string = ""; //historia
   @Input() idEscritor: string = ""; //lector
+  @Input() idAutor: string = "";
   public starValue: number = 0;
   public valoracion: any;
   public existValue: boolean = false; //histria ya valorada por el lector?
-  constructor(private historiaService: HistoriasService) { }
+  constructor(private historiaService: HistoriasService) {     
+  }
 
   ngOnInit(): void {
-    this.existValoracion();
+    this.existValoracion();                    
   }
 
   asignValue(r: any) {
@@ -60,5 +63,7 @@ export class AsignvalueComponent implements OnInit {
       }
     )
   }
+    /* if (this.idEscritor !== this.idAutor) {
+  } */
 
 }
