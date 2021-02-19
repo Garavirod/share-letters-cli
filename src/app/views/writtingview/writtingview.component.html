@@ -99,7 +99,7 @@
                 </div>
                 <div class="col-lg-6">
                     <h5>Valoración</h5>                    
-                    <!-- <app-valoracion [idHistoria]="historia.id"></app-valoracion> -->
+                    <app-valoracion [idHistoria]="idHistoriaURL"></app-valoracion>
                     <div *ngIf="deletingStory; else DeletingFinished">
                         <app-loader [isVisible]="deletingStory" [message]="'Eliminando...'"></app-loader>
                     </div>
