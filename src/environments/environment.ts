@@ -4,7 +4,7 @@
 
 export const environment = {
   cloudinaryURL : 'https://api.cloudinary.com/v1_1/dlapenluj/upload',
-  spenBaseURL : 'http://localhost:5000/api',
+  spenBaseURL : 'https://spen-app.herokuapp.com/api',
   production: false
 };
 
