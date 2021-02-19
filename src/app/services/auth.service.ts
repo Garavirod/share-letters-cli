@@ -25,9 +25,7 @@ export class AuthService {
     const endpoint:string = `${environment.spenBaseURL}/credentials/login`;
     return this.http.post(endpoint,credentials); 
   }
-
   //user logout
-
   public logOut():void{
     localStorage.removeItem('spen-tkn');
     this.userLogged$.emit(false);
