@@ -49,6 +49,11 @@ export class HistoriasService {
     return this.http.post(endpoint,comentario);
   }
 
+  //DELETE STORY
+  delteStoryFromBDD(id:string){
+    const endpoint = `${environment.spenBaseURL}/historias/delete-story/${id}`;
+    return this.http.delete(endpoint);
+  }
 
   //CREATE NEW STORY
   createNewStory(historia:any){

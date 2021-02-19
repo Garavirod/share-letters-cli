@@ -75,6 +75,12 @@
                                 type="checkbox" class="form-check-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">¿Has terminado tu historia?</label>
                         </div>
+                        <!-- Error on save -->
+                            <div class="row text-center">
+                                <p class="text-success" *ngIf="wasSavedStory">Cambios guardados, exitosamente.</p>
+                                <p class="text-danger" *ngIf="errorOnSaved">Los cambios no fueron guardados.</p>
+                            </div>
+                        <!-- End error on save -->
                         <button
                              
                             [disabled]="refTitulo.invalid || refNarrativa.invalid || savingStroy"
@@ -87,15 +93,40 @@
                             <ng-template #SavingFinished>
                                 <i class="bi bi-save2-fill m-2"></i>
                                 Guardar
-                            </ng-template>                            
+                            </ng-template>                                                        
                         </button>
                     </form>
                 </div>
                 <div class="col-lg-6">
-                    <h5>Valoración</h5>
+                    <h5>Valoración</h5>                    
                     <!-- <app-valoracion [idHistoria]="historia.id"></app-valoracion> -->
-                    <button type="button" class="btn btn-danger rounded-pill"><i class="bi bi-trash-fill m-2"></i>Eliminar</button>
-
+                    <div *ngIf="deletingStory; else DeletingFinished">
+                        <app-loader [isVisible]="deletingStory" [message]="'Eliminando...'"></app-loader>
+                    </div>
+                    <ng-template #DeletingFinished>
+                        <button (click)="errorOnDelete=false" data-bs-target="#deleteModal" data-bs-toggle="modal" type="button" class="btn btn-danger rounded-pill"><i class="bi bi-trash-fill m-2"></i>Eliminar</button>                       
+                    </ng-template>
+                    <p class="text-danger mt-2" *ngIf="errorOnDelete">La historia no pudo ser eliminada</p>
+                    <!-- Delete Modal -->
+                    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Eliminar historia</h5>
+                            <button [disabled]="deletingStory" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">                                
+                                <div class="row text-center">                                    
+                                    <p>¿Seguro que deseas eliminar tu historia?</p>                                                                                        
+                                </div>                                
+                            </div>
+                            <div class="modal-footer">
+                            <button #refBtnModal [disabled]="deletingStory" type="button" class="btn btn-secondary" data-bs-dismiss="modal">No, conservar</button>
+                            <button [disabled]="deletingStory" type="button" class="btn btn-primary" (click)="deleteStory(refBtnModal)">Si, borrar</button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

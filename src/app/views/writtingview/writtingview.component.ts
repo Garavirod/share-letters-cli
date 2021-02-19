@@ -12,7 +12,15 @@ import { HistoriasService } from 'src/app/services/historias.service';
 export class WrittingviewComponent implements OnInit {
   idHistoriaURL:string;  
   historia:Historia;
+
+  //loadings
   savingStroy:boolean = false;
+  deletingStory:boolean = false;
+
+  //Status actions
+  wasSavedStory:boolean = false;
+  errorOnSaved:boolean = false;  
+  errorOnDelete:boolean = false;
 
   constructor(
       private historiaService:HistoriasService, 
@@ -54,14 +62,42 @@ export class WrittingviewComponent implements OnInit {
     this.historia.setContenido(content);
   }
 
+  deleteStory(f:any){
+    f.click();
+    this.deletingStory=true;
+    this.historiaService.delteStoryFromBDD(this.historia.getId())
+    .subscribe(
+      (res:any)=>{   
+        this.router.navigateByUrl('/profile');                          
+      },
+      (error)=>{
+        this.deletingStory=false;
+        this.errorOnDelete = true;
+        console.log(error);                 
+      },
+      ()=>{
+        this.deletingStory=false;
+      } 
+    )
+  }
+
   public saveStory(){
     this.savingStroy = true;    
     this.historiaService.saveStoryChanges(this.historia).subscribe(
-      (res:any)=>{        
+      (res:any)=>{  
+         
+       this.wasSavedStory = true;
+       setTimeout(()=>{
+        this.wasSavedStory = false;
+       },3000);    
        console.log(res);      
       },
       (error)=>{
-       console.log(error);                
+       console.log(error);   
+       this.errorOnSaved = true;
+       setTimeout(()=>{
+        this.errorOnSaved = false;
+       },3000);                       
       },
       ()=>{
         this.savingStroy = false;
