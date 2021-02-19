@@ -19,7 +19,7 @@ class ImageSnippet {
 
 
 export class ProfileComponent implements OnInit {
-  private uid:string="";
+  private uid:string;
   escritor:Escritor;
   historia:Historia;
   selectedFile: ImageSnippet | null = null;
